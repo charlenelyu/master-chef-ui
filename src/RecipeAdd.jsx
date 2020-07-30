@@ -12,7 +12,6 @@ export default class RecipeAdd extends React.Component {
     const recipe = {
       author: form.title.value,
       title: form.title.value,
-      img: defaultImg,
       // img: img2,
       // ingredients: "a",
       // steps: "111111",

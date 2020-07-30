@@ -12,7 +12,6 @@ export default function Contents() {
     <Switch>
       <Redirect exact from="/" to="/recipes" />
       <Route path="/recipes" component={RecipeList} />
-      <Route path="/search" component={Search} />
       <Route path="/profile" component={Profile} />
       <Route component={NotFound} />
     </Switch> 

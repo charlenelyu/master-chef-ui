@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Contents from './Contents.jsx';
 
@@ -6,13 +7,11 @@ import Contents from './Contents.jsx';
 function NavBar() {
   return (
     <nav>
-      <a href="/">Home</a>
+      <NavLink exact to="/">Home</NavLink>
       {'|'}
-      <a href="/#recipes">Recipe List</a>
+      <NavLink to="/recipes">Recipes</NavLink>
       {'|'}
-      <a href="/#search">Search</a>
-      {'|'}
-      <a href="/#profile">Profile</a>
+      <NavLink to="/profile">Profile</NavLink>
     </nav>
   );
 }
