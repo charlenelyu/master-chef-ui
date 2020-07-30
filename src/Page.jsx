@@ -1,15 +1,18 @@
 import React from 'react';
 
+import Contents from './Contents.jsx';
+
+// separate navBar with contents
 function NavBar() {
   return (
     <nav>
       <a href="/">Home</a>
       {'|'}
-      <a href="/">Recipe List</a>
+      <a href="/#recipes">Recipe List</a>
       {'|'}
-      <a href="/">Search</a>
+      <a href="/#search">Search</a>
       {'|'}
-      <a href="/">Profile</a>
+      <a href="/#profile">Profile</a>
     </nav>
   );
 }

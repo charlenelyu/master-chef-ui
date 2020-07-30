@@ -1,18 +1,20 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import IssueList from './IssueList.jsx';
-import IssueReport from './IssueReport.jsx';
+import RecipeList from './RecipeList.jsx';
+import Search from './Search.jsx';
+import Profile from './Profile.jsx';
 
 const NotFound = () => <h1>Page Not Found</h1>;
 
 export default function Contents() {
   return (
     <Switch>
-    <Redirect exact from="/" to="/issues" />
-    <Route path="/issues" component={IssueList} />
-    <Route path="/report" component={IssueReport} />
-    <Route component={NotFound} />
+      <Redirect exact from="/" to="/recipes" />
+      <Route path="/recipes" component={RecipeList} />
+      <Route path="/search" component={Search} />
+      <Route path="/profile" component={Profile} />
+      <Route component={NotFound} />
     </Switch> 
   );
 }
