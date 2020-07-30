@@ -10,22 +10,6 @@ import img1 from '../public/assets/sp1.jpg';
 import img2 from '../public/assets/sp2.jpg';
 import defaultImg from '../public/assets/default.jpg';
 
-
-// material ui 的css配置
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     justifyContent: 'space-around',
-//     overflow: 'hidden',
-//     backgroundColor: theme.palette.background.paper,
-//   },
-//   gridList: {
-//     width: 600,
-//     height: 450,
-//   },
-// }));
-
 // 测试菜谱
 const testRecipe = [
   {
@@ -34,6 +18,7 @@ const testRecipe = [
     author: "li",
     img: img1,
     created: new Date('2020-07-29'),
+    rating: 0.0,
     ingredients: "a",
     steps: "111111",
     tag: "aaaaaa",
@@ -44,6 +29,7 @@ const testRecipe = [
     author: "ti",
     img: img2,
     created: new Date('2020-07-30'),
+    rating: 0.0,
     ingredients: "a",
     steps: "111111",
     tag: "aaaaaa",

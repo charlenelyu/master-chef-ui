@@ -155,10 +155,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/styles/cardStyle.less":
-/*!****************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/styles/cardStyle.less ***!
-  \****************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/styles/antStyle.less":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/styles/antStyle.less ***!
+  \***************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -166,11 +166,14 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_antd_dist_antd_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../node_modules/css-loader/dist/cjs.js!../../node_modules/antd/dist/antd.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/antd/dist/antd.css");
 // Imports
 
+
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_node_modules_antd_dist_antd_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".card-list {\n  float: left;\n  margin-bottom: 13px;\n}\n.card-list img {\n  height: 156px;\n}\n.card-list .ant-card {\n  box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);\n}\n.card-list .ant-card:hover {\n  transform: scale(1.1, 1.1);\n  cursor: pointer;\n}\n.card-list .ant-card-cover img {\n  width: 100%;\n}\n", "",{"version":3,"sources":["/Users/tianhuili/neu align/2020summer/cs5610_git/GroupProject_Ladybugs_UI/src/styles/cardStyle.less","cardStyle.less"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,mBAAA;ACCF;ADHA;EAII,aAAA;ACEJ;ADNA;EAOI,4CAAA;ACEJ;ADDI;EACE,0BAAA;EACA,eAAA;ACGN;ADbA;EAeI,WAAA;ACCJ","file":"cardStyle.less","sourcesContent":[".card-list {\n  float: left;\n  margin-bottom: 13px;\n  img {\n    height: 156px;\n  }\n  .ant-card {\n    box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);\n    &:hover {\n      transform: scale(1.1, 1.1);\n      cursor: pointer;\n    }\n  }\n  // 图片自适应container\n  .ant-card-cover img{\n    width: 100%;\n  }\n}",".card-list {\n  float: left;\n  margin-bottom: 13px;\n}\n.card-list img {\n  height: 156px;\n}\n.card-list .ant-card {\n  box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);\n}\n.card-list .ant-card:hover {\n  transform: scale(1.1, 1.1);\n  cursor: pointer;\n}\n.card-list .ant-card-cover img {\n  width: 100%;\n}\n"]}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".card-list {\n  margin-bottom: 13px;\n}\n.card-list img {\n  height: 156px;\n}\n.card-list .ant-card {\n  box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);\n}\n.card-list .ant-card:hover {\n  transform: scale(1.1, 1.1);\n  cursor: pointer;\n}\n.card-list .ant-card-cover img {\n  width: 100%;\n}\n.site-layout-content {\n  background: #fff;\n  padding: 24px;\n  height: auto;\n}\n.logo {\n  width: 120px;\n  height: 31px;\n  background: rgba(255, 255, 255, 0.2);\n  margin: 16px 24px 16px 0;\n  float: left;\n}\n[data-theme=\"dark\"] .site-layout-content {\n  background: #141414;\n}\n[data-theme=\"dark\"] .logo {\n  background: rgba(255, 255, 255, 0.3);\n}\n", "",{"version":3,"sources":["/Users/tianhuili/neu align/2020summer/cs5610_git/GroupProject_Ladybugs_UI/src/styles/antStyle.less","antStyle.less"],"names":[],"mappings":"AAGA;EAGE,mBAAA;ACHF;ADAA;EAKI,aAAA;ACFJ;ADHA;EAQI,4CAAA;ACFJ;ADGI;EACE,0BAAA;EACA,eAAA;ACDN;ADVA;EAgBI,WAAA;ACHJ;ADSA;EACE,gBAAA;EACA,aAAA;EACA,YAAA;ACPF;ADSA;EACE,YAAA;EACA,YAAA;EACA,oCAAA;EACA,wBAAA;EACA,WAAA;ACPF;ADSE;EACE,mBAAA;ACPJ;ADSE;EACE,oCAAA;ACPJ","file":"antStyle.less","sourcesContent":["@import 'antd/dist/antd.css';\n\n// card相关\n.card-list {\n  // 因为cards是float， 无法放到container里\n  // float: left;\n  margin-bottom: 13px;\n  img {\n    height: 156px;\n  }\n  .ant-card {\n    box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);\n    &:hover {\n      transform: scale(1.1, 1.1);\n      cursor: pointer;\n    }\n  }\n  // 图片自适应container\n  .ant-card-cover img{\n    width: 100%;\n  }\n}\n\n\n// layout相关：header/container/footer\n.site-layout-content {\n  background: #fff;\n  padding: 24px;\n  height: auto;\n}\n.logo {\n  width: 120px;\n  height: 31px;\n  background: rgba(255, 255, 255, 0.2);\n  margin: 16px 24px 16px 0;\n  float: left;\n}\n  [data-theme=\"dark\"] .site-layout-content {\n    background: #141414;\n  }\n  [data-theme=\"dark\"] .logo {\n    background: rgba(255,255,255,0.3);\n  }\n","@import 'antd/dist/antd.css';\n.card-list {\n  margin-bottom: 13px;\n}\n.card-list img {\n  height: 156px;\n}\n.card-list .ant-card {\n  box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);\n}\n.card-list .ant-card:hover {\n  transform: scale(1.1, 1.1);\n  cursor: pointer;\n}\n.card-list .ant-card-cover img {\n  width: 100%;\n}\n.site-layout-content {\n  background: #fff;\n  padding: 24px;\n  height: auto;\n}\n.logo {\n  width: 120px;\n  height: 31px;\n  background: rgba(255, 255, 255, 0.2);\n  margin: 16px 24px 16px 0;\n  float: left;\n}\n[data-theme=\"dark\"] .site-layout-content {\n  background: #141414;\n}\n[data-theme=\"dark\"] .logo {\n  background: rgba(255, 255, 255, 0.3);\n}\n"]}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -557,10 +560,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _RecipeList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RecipeList.jsx */ "./src/RecipeList.jsx");
-/* harmony import */ var _Search_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search.jsx */ "./src/Search.jsx");
-/* harmony import */ var _Search_jsx__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Search_jsx__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Profile_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Profile.jsx */ "./src/Profile.jsx");
-
+/* harmony import */ var _Profile_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Profile.jsx */ "./src/Profile.jsx");
 
 
 
@@ -580,7 +580,7 @@ function Contents() {
     component: _RecipeList_jsx__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/profile",
-    component: _Profile_jsx__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _Profile_jsx__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     component: NotFound
   }));
@@ -600,25 +600,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Page; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _styles_antStyle_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/antStyle.less */ "./src/styles/antStyle.less");
+/* harmony import */ var _styles_antStyle_less__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_antStyle_less__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Contents_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Contents.jsx */ "./src/Contents.jsx");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/index.js");
 
 
- // separate navBar with contents
 
-function NavBar() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    exact: true,
-    to: "/"
-  }, "Home"), '|', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    to: "/recipes"
-  }, "Recipes"), '|', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    to: "/profile"
-  }, "Profile"));
+
+var Header = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Header,
+    Content = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Content,
+    Footer = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Footer;
+
+
+var Title = antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Title;
+var Search = antd__WEBPACK_IMPORTED_MODULE_3__["Input"].Search; // search bar css
+
+var suffix = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["AudioOutlined"], {
+  style: {
+    fontSize: 16,
+    color: '#1890ff'
+  }
+}); // 暂时没加
+
+function SearchBar() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Search, {
+    placeholder: "input search text",
+    onSearch: function onSearch(value) {
+      return console.log(value);
+    },
+    enterButton: true
+  }));
 }
 
 function Page() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NavBar, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Contents_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Layout"], {
+    className: "layout"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "logo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"], {
+    theme: "dark",
+    mode: "horizontal",
+    defaultSelectedKeys: ['2']
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
+    key: "1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
+    to: "/recipes"
+  }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
+    key: "2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
+    to: "/recipes"
+  }, "Recipes")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
+    key: "3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
+    to: "/profile"
+  }, "Profile")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Content, {
+    style: {
+      padding: '0 50px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "site-layout-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Contents_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Footer, {
+    style: {
+      textAlign: 'center'
+    }
+  }, "Created by Tianhui Li and Yanghong Lyu")) // {/* <div>
+  //   <NavBar/>
+  //   <Contents/>
+  //   <Footer/>
+  // </div> */}
+  ;
 }
 
 /***/ }),
@@ -845,21 +898,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // material ui 的css配置
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     justifyContent: 'space-around',
-//     overflow: 'hidden',
-//     backgroundColor: theme.palette.background.paper,
-//   },
-//   gridList: {
-//     width: 600,
-//     height: 450,
-//   },
-// }));
-// 测试菜谱
+ // 测试菜谱
 
 var testRecipe = [{
   id: 1,
@@ -867,6 +906,7 @@ var testRecipe = [{
   author: "li",
   img: _public_assets_sp1_jpg__WEBPACK_IMPORTED_MODULE_4__["default"],
   created: new Date('2020-07-29'),
+  rating: 0.0,
   ingredients: "a",
   steps: "111111",
   tag: "aaaaaa"
@@ -876,6 +916,7 @@ var testRecipe = [{
   author: "ti",
   img: _public_assets_sp2_jpg__WEBPACK_IMPORTED_MODULE_5__["default"],
   created: new Date('2020-07-30'),
+  rating: 0.0,
   ingredients: "a",
   steps: "111111",
   tag: "aaaaaa"
@@ -958,8 +999,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/index.js");
-/* harmony import */ var _styles_cardStyle_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/cardStyle.less */ "./src/styles/cardStyle.less");
-/* harmony import */ var _styles_cardStyle_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_cardStyle_less__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _styles_antStyle_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/antStyle.less */ "./src/styles/antStyle.less");
+/* harmony import */ var _styles_antStyle_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_antStyle_less__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -967,13 +1008,13 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_1__["Card"].Meta;
 
 function RecipeCard(_ref) {
   var recipe = _ref.recipe;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     className: "card-list",
-    key: recipe.id
+    span: 6
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Card"], {
     hoverable: true,
     style: {
-      width: 260,
+      width: 250,
       marginLeft: 16
     },
     size: "small",
@@ -994,31 +1035,24 @@ function RecipeTable(_ref2) {
       recipe: recipe
     });
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, recipeCard);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "site-card-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Row"], {
+    gutter: 16
+  }, recipeCard));
 }
 
 /***/ }),
 
-/***/ "./src/Search.jsx":
-/*!************************!*\
-  !*** ./src/Search.jsx ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "./src/styles/cardStyle.less":
-/*!***********************************!*\
-  !*** ./src/styles/cardStyle.less ***!
-  \***********************************/
+/***/ "./src/styles/antStyle.less":
+/*!**********************************!*\
+  !*** ./src/styles/antStyle.less ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/less-loader/dist/cjs.js!./cardStyle.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/styles/cardStyle.less");
+            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/less-loader/dist/cjs.js!./antStyle.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/styles/antStyle.less");
 
             content = content.__esModule ? content.default : content;
 

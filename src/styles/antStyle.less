@@ -1,0 +1,43 @@
+@import 'antd/dist/antd.css';
+
+// card相关
+.card-list {
+  // 因为cards是float， 无法放到container里
+  // float: left;
+  margin-bottom: 13px;
+  img {
+    height: 156px;
+  }
+  .ant-card {
+    box-shadow: 0px 1px 7px 0 rgba(0, 0, 0, 0.1);
+    &:hover {
+      transform: scale(1.1, 1.1);
+      cursor: pointer;
+    }
+  }
+  // 图片自适应container
+  .ant-card-cover img{
+    width: 100%;
+  }
+}
+
+
+// layout相关：header/container/footer
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  height: auto;
+}
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+  [data-theme="dark"] .site-layout-content {
+    background: #141414;
+  }
+  [data-theme="dark"] .logo {
+    background: rgba(255,255,255,0.3);
+  }

@@ -1,22 +1,22 @@
 import React from 'react';
 
-import { Card } from 'antd';
-import './styles/cardStyle.less';
+import { Card, Col, Row } from 'antd';
+import './styles/antStyle.less';
 
 const { Meta } = Card;
 
 function RecipeCard ({recipe}) {
   return (
-    <div className="card-list" key={recipe.id}>
+    <Col className="card-list" span={6}>
       <Card
         hoverable
-        style={{ width: 260, marginLeft: 16 }}
+        style={{ width: 250, marginLeft: 16 }}
         size="small"
         cover={<img alt={recipe.title} src={recipe.img} />}
       >
         <Meta title={recipe.title} description={<span>by: {recipe.author}</span>}/>
       </Card>
-    </div>
+    </Col>
   );
 }
 
@@ -26,8 +26,10 @@ export default function RecipeTable({recipes}) {
   ));
 
   return (
-    <div>
-      {recipeCard}
+    <div className="site-card-wrapper">
+      <Row gutter={16}>
+        {recipeCard}
+      </Row>
     </div>
   );
 }
