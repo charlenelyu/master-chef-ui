@@ -67,7 +67,6 @@ export default class RecipeList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Master Chef</h1>
         <RecipeFilter />
         <hr />
         <RecipeTable recipes={this.state.recipes}/>
