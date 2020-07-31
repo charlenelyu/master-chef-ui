@@ -16,10 +16,17 @@ module.exports = {
       },
       // compiles image
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192',
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
       },
-      // compiles Less to CSS
+      // compiles less
       {
         test: /\.less$/,
         use: [{
@@ -38,5 +45,4 @@ module.exports = {
       chunks: 'all',
     },
   },
-  devtool: 'source-map',
 };
