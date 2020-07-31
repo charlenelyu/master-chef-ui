@@ -1,8 +1,8 @@
 // draw the add modal & send info to database
 
 import React from 'react';
-import { Button, Modal, Form, Input, Select } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Button, Modal, Form, Input, Select, Space} from 'antd';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 function AddRecipeForm({visible, onSubmit, onCancel}) {
   const [form] = Form.useForm();
@@ -37,10 +37,10 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
         name="addRecipe"
       >
         <Form.Item name="title" label="Title">
-          <Input placeholder='please input the title'/>
+          <Input />
         </Form.Item>
         <Form.Item name="author" label='Author'>
-          <Input placeholder='please input the author'/>
+          <Input />
         </Form.Item>
         {/* <Form.Item label='Image'>
           <Input />
@@ -51,11 +51,48 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
             <Select.Option value="demo2">Demo2</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item name="ingredients" label='Ingredient'>
-          <Input.TextArea placeholder='please input ingredients'/>
+        <Form.Item name="ingredients" label="Ingredients">
+          <Input.TextArea />
         </Form.Item>
-        <Form.Item name="steps" label='Step'>
-          <Input.TextArea placeholder='please input steps'/>                
+        <Form.Item label="Steps">
+          <Form.List name="steps">
+            {(fields, { add, remove }) => (
+              <div>
+                {fields.map(field => (
+                  <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
+                    <Form.Item
+                      {...field}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input step or delete this field.",
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <MinusCircleOutlined
+                      onClick={() => {
+                        remove(field.name);
+                      }}
+                    />
+                  </Space>
+                ))}
+
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    onClick={() => {
+                      add();
+                    }}
+                    block
+                  >
+                    <PlusOutlined /> Add field
+                  </Button>
+                </Form.Item>
+              </div>
+            )}
+          </Form.List>
         </Form.Item>
       </Form>
     </Modal>
@@ -81,6 +118,7 @@ export default class RecipeAddModal extends React.Component {
       steps: steps,
       // img,
     }
+    // console.log(newRecipe);
     this.props.createRecipe(newRecipe);
     this.setState({
       visible: false,

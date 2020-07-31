@@ -19,7 +19,7 @@ const testRecipe = [
     img: img1,
     created: new Date('2020/07/29'),
     ingredients: "a",
-    steps: "111111",
+    steps: ["111111", "222222"],
     tag: "aaaaaa",
   },
   {
@@ -29,7 +29,7 @@ const testRecipe = [
     img: img2,
     created: new Date('2020/07/30'),
     ingredients: "a",
-    steps: "111111",
+    steps: ["111111", "222222"],
     tag: "aaaaaa",
   }
 ];
