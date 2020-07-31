@@ -2,8 +2,9 @@ import React from 'react';
 
 import RecipeFilter from './RecipeFilter.jsx'; 
 import RecipeTable from './RecipeTable.jsx'; 
-import RecipeAdd from './RecipeAdd.jsx';
 // import graphQLFetch from './graphQLFetch.js';
+import RecipeAddModal from './RecipeAddModal.jsx';
+
 
 // import测试图片
 import img1 from '../public/assets/sp1.jpg';
@@ -70,8 +71,7 @@ export default class RecipeList extends React.Component {
         <RecipeFilter />
         <hr />
         <RecipeTable recipes={this.state.recipes}/>
-        <hr/>
-        <RecipeAdd createRecipe={this.createRecipe}/>
+        <RecipeAddModal createRecipe={this.createRecipe}/>
       </React.Fragment>
     );
   }

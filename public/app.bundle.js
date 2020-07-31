@@ -696,18 +696,20 @@ function ProfilePage() {
 
 /***/ }),
 
-/***/ "./src/RecipeAdd.jsx":
-/*!***************************!*\
-  !*** ./src/RecipeAdd.jsx ***!
-  \***************************/
+/***/ "./src/RecipeAddModal.jsx":
+/*!********************************!*\
+  !*** ./src/RecipeAddModal.jsx ***!
+  \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RecipeAdd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RecipeAddModal; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -730,60 +732,139 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// draw the add modal & send info to database
 
 
-var RecipeAdd = /*#__PURE__*/function (_React$Component) {
-  _inherits(RecipeAdd, _React$Component);
+ // import { useState } from 'react';
+// import RecipeAddForm from './RecipeAddForm.jsx';
 
-  var _super = _createSuper(RecipeAdd);
+var RecipeAddModal = /*#__PURE__*/function (_React$Component) {
+  _inherits(RecipeAddModal, _React$Component);
 
-  function RecipeAdd() {
+  var _super = _createSuper(RecipeAddModal);
+
+  function RecipeAddModal(props) {
     var _this;
 
-    _classCallCheck(this, RecipeAdd);
+    _classCallCheck(this, RecipeAddModal);
 
-    _this = _super.call(this);
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this = _super.call(this, props);
+    _this.state = {
+      visible: false
+    };
+    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    _this.handleOk = _this.handleOk.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
+    _this.myRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     return _this;
-  }
+  } // const [componentSize, setComponentSize] = useState('default');
+  // const onFormLayoutChange = ({ size }) => {
+  //   setComponentSize(size);
+  // };
 
-  _createClass(RecipeAdd, [{
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
+
+  _createClass(RecipeAddModal, [{
+    key: "showModal",
+    value: function showModal() {
+      this.setState({
+        visible: true
+      });
+    }
+  }, {
+    key: "handleOk",
+    value: function handleOk(e) {
       e.preventDefault();
-      var form = document.forms.recipeAdd;
+      var form = document.forms[0];
       var recipe = {
-        author: form.title.value,
-        title: form.title.value // img: img2,
-        // ingredients: "a",
-        // steps: "111111",
-        // tag: "aaaaaa",
-
+        author: form.author.value,
+        title: form.title.value,
+        createAt: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
+        // img: img2,
+        tag: form.tag.value,
+        ingredients: form.ingredients.value,
+        steps: form.steps.value
       };
       this.props.createRecipe(recipe); // keep the form ready for the next set of input;
+      // form.author.val = "";
+      // form.title.val = "";
 
-      form.author.val = "";
-      form.title.val = "";
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: "handleCancel",
+    value: function handleCancel() {
+      console.log('Clicked cancel button');
+      this.setState({
+        visible: false
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        name: "recipeAdd",
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        type: "primary",
+        shape: "circle",
+        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["PlusOutlined"], null),
+        size: "large",
+        onClick: this.showModal
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+        title: "Add new recipe",
+        visible: this.state.visible,
+        onOk: this.handleOk,
+        onCancel: this.handleCancel,
+        footer: null
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+        labelCol: {
+          span: 4
+        },
+        wrapperCol: {
+          span: 14
+        },
+        layout: "horizontal",
+        name: "recipeAdd" // initialValues={{
+        //   size: componentSize,
+        // }}
+        // onValuesChange={onFormLayoutChange}
+        // size={componentSize}
+
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, {
         name: "title",
-        placeholder: "Title"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
+        label: "Title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        placeholder: "please type the title"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, {
         name: "author",
-        placeholder: "Author"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add")));
+        label: "Author"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        placeholder: "please type the author"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, {
+        name: "tag",
+        label: "Tag"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Select"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Select"].Option, {
+        value: "demo1"
+      }, "Demo1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Select"].Option, {
+        value: "demo2"
+      }, "Demo2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, {
+        name: "ingredients",
+        label: "Ingredient"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Input"].TextArea, {
+        placeholder: "please type the ingredients"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, {
+        name: "steps",
+        label: "Step"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Input"].TextArea, {
+        placeholder: "please type the steps"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        type: "primary",
+        htmlType: "submit",
+        onClick: this.handleOk
+      }, "Submit")))));
     }
   }]);
 
-  return RecipeAdd;
+  return RecipeAddModal;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -865,7 +946,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _RecipeFilter_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RecipeFilter.jsx */ "./src/RecipeFilter.jsx");
 /* harmony import */ var _RecipeTable_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RecipeTable.jsx */ "./src/RecipeTable.jsx");
-/* harmony import */ var _RecipeAdd_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RecipeAdd.jsx */ "./src/RecipeAdd.jsx");
+/* harmony import */ var _RecipeAddModal_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RecipeAddModal.jsx */ "./src/RecipeAddModal.jsx");
 /* harmony import */ var _public_assets_sp1_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../public/assets/sp1.jpg */ "./public/assets/sp1.jpg");
 /* harmony import */ var _public_assets_sp2_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../public/assets/sp2.jpg */ "./public/assets/sp2.jpg");
 /* harmony import */ var _public_assets_default_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../public/assets/default.jpg */ "./public/assets/default.jpg");
@@ -893,9 +974,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
  // import graphQLFetch from './graphQLFetch.js';
-// import测试图片
+
+ // import测试图片
 
 
 
@@ -974,7 +1055,7 @@ var RecipeList = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeFilter_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeTable_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         recipes: this.state.recipes
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeAdd_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeAddModal_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
         createRecipe: this.createRecipe
       }));
     }
