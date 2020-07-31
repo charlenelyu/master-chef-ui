@@ -752,6 +752,7 @@ var RecipeAddModal = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       visible: false
     };
+    _this.formRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     _this.handleOk = _this.handleOk.bind(_assertThisInitialized(_this));
     _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
@@ -774,15 +775,15 @@ var RecipeAddModal = /*#__PURE__*/function (_React$Component) {
     key: "handleOk",
     value: function handleOk(e) {
       e.preventDefault();
-      var form = document.forms[0];
+      var form = this.formRef.current;
       var recipe = {
-        author: form.author.value,
-        title: form.title.value,
+        author: form.getFieldValue("author"),
+        title: form.getFieldValue("title"),
         createAt: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
         // img: img2,
-        tag: form.tag.value,
-        ingredients: form.ingredients.value,
-        steps: form.steps.value
+        tag: form.getFieldValue("tag"),
+        ingredients: form.getFieldValue("ingredients"),
+        steps: form.getFieldValue("steps")
       };
       this.props.createRecipe(recipe); // keep the form ready for the next set of input;
       // form.author.val = "";
@@ -828,7 +829,8 @@ var RecipeAddModal = /*#__PURE__*/function (_React$Component) {
         // }}
         // onValuesChange={onFormLayoutChange}
         // size={componentSize}
-
+        ,
+        ref: this.formRef
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Form"].Item, {
         name: "title",
         label: "Title"

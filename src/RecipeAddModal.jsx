@@ -15,6 +15,7 @@ export default class RecipeAddModal extends React.Component {
     this.state = {
       visible: false,
     };
+    this.formRef = React.createRef();
     this.showModal = this.showModal.bind(this);
     this.handleOk = this.handleOk.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -35,15 +36,15 @@ export default class RecipeAddModal extends React.Component {
 
   handleOk(e) {
     e.preventDefault();
-    const form = document.forms[0];
+    const form = this.formRef.current;
     const recipe = {
-      author: form.author.value,
-      title: form.title.value,
+      author: form.getFieldValue("author"),
+      title: form.getFieldValue("title"),
       createAt: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
       // img: img2,
-      tag: form.tag.value,
-      ingredients: form.ingredients.value,
-      steps: form.steps.value,
+      tag: form.getFieldValue("tag"),
+      ingredients: form.getFieldValue("ingredients"),
+      steps: form.getFieldValue("steps"),
     }
     this.props.createRecipe(recipe);
     // keep the form ready for the next set of input;
@@ -92,6 +93,7 @@ export default class RecipeAddModal extends React.Component {
             // }}
             // onValuesChange={onFormLayoutChange}
             // size={componentSize}
+            ref={this.formRef}
           >
             <Form.Item name="title" label="Title">
               <Input placeholder='please type the title'/>
