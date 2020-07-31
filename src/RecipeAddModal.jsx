@@ -1,13 +1,66 @@
 // draw the add modal & send info to database
 
 import React from 'react';
-import { Button, Modal, Form,Input, Select } from 'antd';
+import { Button, Modal, Form, Input, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-// import { useState } from 'react';
-
-// import RecipeAddForm from './RecipeAddForm.jsx';
-
+function AddRecipeForm({visible, onSubmit, onCancel}) {
+  const [form] = Form.useForm();
+  return (
+    <Modal
+      visible={visible}
+      title="Add a New Recipe"
+      okText="Submit"
+      cancelText="cancel"
+      onOk={() => {
+        form
+          .validateFields()
+          .then(values => {
+            form.resetFields();
+            onSubmit(values);
+          })
+          .catch(info => {
+            console.log('Validate Failed:', info)
+          })
+      }}
+      onCancel={onCancel}
+    >
+      <Form
+        form={form}
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 20,
+        }}
+        layout="horizontal"
+        name="addRecipe"
+      >
+        <Form.Item name="title" label="Title">
+          <Input placeholder='please input the title'/>
+        </Form.Item>
+        <Form.Item name="author" label='Author'>
+          <Input placeholder='please input the author'/>
+        </Form.Item>
+        {/* <Form.Item label='Image'>
+          <Input />
+        </Form.Item> */}
+        <Form.Item name="tag" label="Tag">
+          <Select>
+            <Select.Option value="demo1">Demo1</Select.Option>
+            <Select.Option value="demo2">Demo2</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item name="ingredients" label='Ingredient'>
+          <Input.TextArea placeholder='please input ingredients'/>
+        </Form.Item>
+        <Form.Item name="steps" label='Step'>
+          <Input.TextArea placeholder='please input steps'/>                
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+}
 
 export default class RecipeAddModal extends React.Component {
   constructor(props) {
@@ -15,47 +68,26 @@ export default class RecipeAddModal extends React.Component {
     this.state = {
       visible: false,
     };
-    this.formRef = React.createRef();
-    this.showModal = this.showModal.bind(this);
-    this.handleOk = this.handleOk.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.myRef = React.createRef();
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
-  // const [componentSize, setComponentSize] = useState('default');
-
-  // const onFormLayoutChange = ({ size }) => {
-  //   setComponentSize(size);
-  // };
-
-  showModal() {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleOk(e) {
-    e.preventDefault();
-    const form = this.formRef.current;
-    const recipe = {
-      author: form.getFieldValue("author"),
-      title: form.getFieldValue("title"),
-      createAt: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10),
-      // img: img2,
-      tag: form.getFieldValue("tag"),
-      ingredients: form.getFieldValue("ingredients"),
-      steps: form.getFieldValue("steps"),
+  onSubmit({title, author, tag, ingredients, steps}) {
+    const newRecipe = {
+      author: author,
+      title: title,
+      tag: tag,
+      ingredients: ingredients,
+      steps: steps,
+      // img,
     }
-    this.props.createRecipe(recipe);
-    // keep the form ready for the next set of input;
-    // form.author.val = "";
-    // form.title.val = "";
+    this.props.createRecipe(newRecipe);
     this.setState({
       visible: false,
     });
   }
 
-  handleCancel() {
+  onCancel() {
     console.log('Clicked cancel button');
     this.setState({
       visible: false,
@@ -64,69 +96,22 @@ export default class RecipeAddModal extends React.Component {
 
   render() {
     return (
-      <React.Fragment>  
+      <div>  
         <Button
           type="primary"
           shape="circle"
           icon={<PlusOutlined />}
           size="large"
-          onClick={this.showModal}>
-        </Button>
-        <Modal
-          title="Add new recipe"
+          onClick={() => {
+            this.setState({ visible: true });
+          }}
+        />
+        <AddRecipeForm
           visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={null}
-        >
-          <Form
-            labelCol={{
-              span: 4,
-            }}
-            wrapperCol={{
-              span: 14,
-            }}
-            layout="horizontal"
-            name="recipeAdd"
-            // initialValues={{
-            //   size: componentSize,
-            // }}
-            // onValuesChange={onFormLayoutChange}
-            // size={componentSize}
-            ref={this.formRef}
-          >
-            <Form.Item name="title" label="Title">
-              <Input placeholder='please type the title'/>
-            </Form.Item>
-            <Form.Item name="author" label='Author'>
-              <Input placeholder='please type the author'/>
-            </Form.Item>
-            {/* <Form.Item label='Image'>
-              <Input />
-            </Form.Item> */}
-            {/* <Form.Item label='Create at'>
-              <Input />
-            </Form.Item> */}
-            <Form.Item name="tag" label="Tag">
-              <Select>
-                <Select.Option value="demo1">Demo1</Select.Option>
-                <Select.Option value="demo2">Demo2</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item name="ingredients" label='Ingredient'>
-              <Input.TextArea placeholder='please type the ingredients'/>
-            </Form.Item>
-            <Form.Item name="steps" label='Step'>
-              <Input.TextArea placeholder='please type the steps'/>                
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" onClick={this.handleOk}>
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </Modal>
-      </React.Fragment>  
+          onSubmit={this.onSubmit}
+          onCancel={this.onCancel}
+        />
+      </div>  
     );
   }
 }
