@@ -1,21 +1,24 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Card, Col, Row } from 'antd';
 import './styles/antStyle.less';
 
 const { Meta } = Card;
 
 function RecipeCard({recipe}) {
-  const {title, author, img} = recipe;
+  const {id, title, author, img} = recipe;
   return (
     <Col className="card-list" span={6}>
-      <Card
-        hoverable
-        style={{ width: 250, marginLeft: 16 }}
-        size="small"
-        cover={<img alt={title} src={img} />}
-      >
-        <Meta title={title} description={<span>by: {author}</span>}/>
-      </Card>
+      <NavLink to={`/recipe/${id}`}>
+        <Card
+          hoverable
+          style={{ width: 250, marginLeft: 16 }}
+          size="small"
+          cover={<img alt={title} src={img} />}
+        >
+          <Meta title={title} description={<span>by: {author}</span>}/>
+        </Card>
+      </NavLink>
     </Col>
   );
 }
