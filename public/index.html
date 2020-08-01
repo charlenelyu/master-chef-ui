@@ -1,18 +1,17 @@
 <html>
   <head>
-    <meta charset="utf-8"> <title>Master Chef</title>
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/polyfill@7/dist/polyfill.min.js"></script>
-    <script src="https://unpkg.com/whatwg-fetch@3.0.0/dist/fetch.umd.js"></script>
-    <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
+    <meta charset="utf-8">
+    <title>Master Chef</title>
     <style>
       table.bordered-table th, td {border: 1px solid silver; padding: 4px;} 
       table.bordered-table {border-collapse: collapse;}
+      /* a.active {background-color: #D8D8F5;} */
     </style>
   </head>
 
   <body>
-    <div>This is our test index page!</div>
+    <div id="root"></div>
+    <script src="/vendor.bundle.js"></script>
+    <script src="/app.bundle.js"></script>
   </body>
 </html>
