@@ -14,7 +14,8 @@ function RecipeCard({recipe}) {
         size="small"
         cover={<img alt={title} src={img} />}
       >
-        <Meta title={title} description={<span>by: {author}</span>}/>
+        {/* author传过来是一个object, 只用里面的name */}
+        <Meta title={title} description={<span>by: {author['name']}</span>}/>
       </Card>
     </Col>
   );

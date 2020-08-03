@@ -9,7 +9,6 @@ const { MongoClient } = require('mongodb');
 // const url = 'mongodb+srv://<username>:<password>@cluster0.w1lxr.mongodb.net/masterchef?retryWrites=true';
 const url = 'mongodb+srv://tianhui:3255713988@cluster0.w1lxr.mongodb.net/masterchef?retryWrites=true';
 
-
 let db;
 
 const aboutMessage = 'Master Chef API v1.0';
@@ -21,6 +20,7 @@ const resolvers = {
     userList,
   },
   Mutation: {
+    setAboutMessage,
     createRecipe,
     createUser,
   },
@@ -30,6 +30,10 @@ const resolvers = {
   User: {
     posts, // match a user with all his posts
   }
+};
+
+function setAboutMessage(_, { message }) {
+  return aboutMessage = message;
 };
 
 async function recipeList() {

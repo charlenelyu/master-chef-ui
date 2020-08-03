@@ -23,6 +23,7 @@ export default function NavBar() {
           <Menu.Item key="2" disabled>
             <NavLink to="/profile">Profile</NavLink>
           </Menu.Item>
+         {/* <NavLink to="/about">About</NavLink> */}
         </Menu>        
       </Col>
 
