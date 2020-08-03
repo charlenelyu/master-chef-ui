@@ -44,7 +44,7 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
         <Form.Item name="author" label='Author'>
           <Input />
         </Form.Item>
-        <Form.Item label='Image'>
+        <Form.Item label='Image' name="img">
           <ImageUpload />
         </Form.Item>
         <Form.Item name="tag" label="Tag">
@@ -54,7 +54,7 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
           </Select>
         </Form.Item>
         <Form.Item label="Ingredients">
-          <Form.List name="Ingredients">
+          <Form.List name="ingredients">
             {(fields, { add, remove }) => (
               <div>
                 {fields.map(field => (
