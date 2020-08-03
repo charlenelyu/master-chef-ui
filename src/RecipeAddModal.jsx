@@ -4,6 +4,8 @@ import React from 'react';
 import { Button, Modal, Form, Input, Select, Space} from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
+import ImageUpload from './ImageUpload.jsx'
+
 function AddRecipeForm({visible, onSubmit, onCancel}) {
   const [form] = Form.useForm();
   return (
@@ -42,9 +44,9 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
         <Form.Item name="author" label='Author'>
           <Input />
         </Form.Item>
-        {/* <Form.Item label='Image'>
-          <Input />
-        </Form.Item> */}
+        <Form.Item label='Image'>
+          <ImageUpload />
+        </Form.Item>
         <Form.Item name="tag" label="Tag">
           <Select>
             <Select.Option value="demo1">Demo1</Select.Option>
