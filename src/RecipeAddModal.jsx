@@ -114,7 +114,7 @@ export default class RecipeAddModal extends React.Component {
       author: author,
       title: title,
       tag: tag,
-      ingredients: ingredients,
+      ingredients: [ingredients],
       steps: steps,
       // img,
     }

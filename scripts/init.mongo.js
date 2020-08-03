@@ -34,13 +34,16 @@ const usersDB = [
     email: 'abc@outlook.com',
   }
 ]
-
 db.recipes.insertMany(recipesDB);
 db.users.insertMany(usersDB);
 const recipeCount = db.recipes.count();
 const userCount = db.users.count();
 print('Inserted', recipeCount, 'recipes');
 print('Inserted', userCount, 'users');
+
+// counters for recipes
+db.counters.remove({ _id: 'recipes' });
+db.counters.insert({ _id: 'recipes', current: recipeCount });
 
 db.recipes.createIndex({ id: 1 }, { unique: true });
 db.recipes.createIndex({ author: 1 });

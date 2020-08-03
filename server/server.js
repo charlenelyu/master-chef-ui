@@ -20,7 +20,6 @@ const resolvers = {
     userList,
   },
   Mutation: {
-    setAboutMessage,
     createRecipe,
     createUser,
   },
@@ -32,9 +31,14 @@ const resolvers = {
   }
 };
 
-function setAboutMessage(_, { message }) {
-  return aboutMessage = message;
-};
+async function getNextSequence(name) {
+  const result = await db.collection('counters').findOneAndUpdate(
+    { _id: name },
+    { $inc: { current: 1 } },
+    { returnOriginal: false },
+  );
+  return result.value.current;
+}
 
 async function recipeList() {
   const recipes = await db.collection('recipes').find({}).toArray();
@@ -46,42 +50,45 @@ async function userList() {
   return users;
 }
 
-async function author({ author }) {
-  const list = await userList();
-  return list.find((user) => {
-    return user.name === author;
-  })
+function author({author}) {
+  return db.collection('users').findOne({ name: { $eq : author } });
 }
 
-async function posts({ name }) {
-  const list = await recipeList();
-  return list.filter((recipe) => {
-    return recipe.author === name;
-  })
+function posts({name}) {
+  return db.collection('recipes')
+    .find({ author: { $eq : name } }).toArray();
 }
 
-function createRecipe(_, { recipe }) {
-  const userExist = usersDB.some((user) => user.name === recipe.author);
-  if (!userExist) {
+
+// 使用counter来计算id - delete的时候也要减counter
+async function createRecipe(_, {recipe}) {
+  const userCount = await db.collection('users')
+    .countDocuments({ name : { $eq : recipe.author }});
+  if (userCount === 0) {
     throw new Error('User not found');
   }
   recipe.created = new Date().toDateString();
-  recipe.id = recipesDB.length + 1;
-  recipesDB.push(recipe);
-  return recipe;
+  recipe.id = await getNextSequence('recipes');
+  const result = await db.collection('recipes').insertOne(recipe);
+  const savedRecipe = await db.collection('recipes')
+    .findOne({ _id: result.insertedId });
+  return savedRecipe;
 }
 
-function createUser(_, { name, email }) {
-  const nameToken = usersDB.some((user) => user.name === name);
-  if (nameToken) {
+async function createUser(_, {name, email}) {
+  const userCount = await db.collection('users')
+    .countDocuments({ name : { $eq : name }});
+  if (userCount !== 0) {
     throw new Error('username exists');
   }
   const user = {
     name: name,
     email: email,
   }
-  usersDB.push(user);
-  return user;
+  const result = await db.collection('users').insertOne(user);
+  const savedUser = await db.collection('users')
+    .findOne({ _id: result.insertedId });
+  return savedUser;
 }
 
 async function connectToDb() {
@@ -91,7 +98,6 @@ async function connectToDb() {
   db = client.db();
 }
 
-// path of schema.graphql might change
 const server = new ApolloServer({
   typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
   resolvers,
@@ -103,14 +109,13 @@ app.use(express.static('public'));
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-// eslint-disable-next-line func-names
 (async function () {
   try {
     await connectToDb();
-    app.listen(3000, () => {
+    app.listen(3000, function () {
       console.log('App started on port 3000');
     });
   } catch (err) {
     console.log('ERROR:', err);
-  }
-}());
+  } 
+})();

@@ -2,12 +2,12 @@ type Recipe {
   _id: ID!
   id: ID!
   author: User!
-  img: String!
-  created: String!
-  ingredients: [String]!
-  steps: [String]!
-  tag: String
   title: String!
+  img: String
+  created: String!
+  ingredients: [String]
+  steps: [String]
+  tag: String
 }
 
 type User {
@@ -31,10 +31,10 @@ type Mutation {
 }
 
 input RecipeInputs {
-  author: String!
-  ingredients: [String]!
-  img: String!
-  steps: [String]!
-  tag: String
   title: String!
+  author: String!
+  img: String
+  tag: String
+  ingredients: [String]
+  steps: [String]
 }
