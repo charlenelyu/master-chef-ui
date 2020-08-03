@@ -2,7 +2,7 @@ import React from 'react';
 
 import RecipeFilter from './RecipeFilter.jsx'; 
 import RecipeTable from './RecipeTable.jsx'; 
-// import graphQLFetch from './graphQLFetch.js';
+import graphQLFetch from './graphQLFetch.js';
 import RecipeAddModal from './RecipeAddModal.jsx';
 
 export default class RecipeList extends React.Component {
@@ -26,17 +26,12 @@ export default class RecipeList extends React.Component {
       }
     }`
     
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ query })
-    });
-
-    const result = await response.json();
-    this.setState({ recipes: result.data.recipeList });
+    const data = await graphQLFetch(query);
+    if (data) {
+      this.setState({ recipes: data.recipeList });
+    }
   }
 
-  // 和后端api相接，先检查user再create?
   async createRecipe(recipe) {
     const query = `mutation createRecipe($recipe: RecipeInputs!){
       createRecipe(recipe: $recipe) {
@@ -44,13 +39,10 @@ export default class RecipeList extends React.Component {
       }
     }`;
 
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ query, variables: { recipe } })
-    });
-
-    this.loadData();
+    const data = await graphQLFetch(query, { recipe })
+    if (data) {
+      this.loadData();
+    }
   }
 
   render() {
