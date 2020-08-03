@@ -51,8 +51,45 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
             <Select.Option value="demo2">Demo2</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item name="ingredients" label="Ingredients">
-          <Input.TextArea />
+        <Form.Item label="Ingredients">
+          <Form.List name="Ingredients">
+            {(fields, { add, remove }) => (
+              <div>
+                {fields.map(field => (
+                  <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
+                    <Form.Item
+                      {...field}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input step or delete this field.",
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <MinusCircleOutlined
+                      onClick={() => {
+                        remove(field.name);
+                      }}
+                    />
+                  </Space>
+                ))}
+
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    onClick={() => {
+                      add();
+                    }}
+                    block
+                  >
+                    <PlusOutlined /> Add field
+                  </Button>
+                </Form.Item>
+              </div>
+            )}
+            </Form.List>
         </Form.Item>
         <Form.Item label="Steps">
           <Form.List name="steps">
@@ -114,7 +151,7 @@ export default class RecipeAddModal extends React.Component {
       author: author,
       title: title,
       tag: tag,
-      ingredients: [ingredients],
+      ingredients: ingredients,
       steps: steps,
       // img,
     }
