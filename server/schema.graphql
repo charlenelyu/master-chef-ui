@@ -1,0 +1,39 @@
+type Recipe {
+  _id: ID!
+  id: ID!
+  author: User!
+  img: String!
+  created: String!
+  ingredients: [String]!
+  steps: [String]!
+  tag: String
+  title: String!
+}
+
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  posts: [Recipe]!
+  stars: [Recipe]!
+}
+
+type Query {
+  about: String!
+  recipeList: [Recipe]!
+  userList: [User]!
+}
+
+type Mutation {
+  createRecipe(recipe: RecipeInputs!): Recipe!
+  createUser(name: String!, email: String!): User!
+}
+
+input RecipeInputs {
+  author: String!
+  ingredients: [String]!
+  img: String!
+  steps: [String]!
+  tag: String
+  title: String!
+}
