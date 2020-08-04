@@ -146,7 +146,7 @@ export default class RecipeAddModal extends React.Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
-  onSubmit({title, author, tag, ingredients, steps}) {
+  onSubmit({title, author, tag, ingredients, steps, img}) {
     const newRecipe = {
       author: author,
       title: title,
