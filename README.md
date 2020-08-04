@@ -1,7 +1,5 @@
 # GroupProject_Ladybugs_UI
 
-This is Tianhui Li's branch.  
-
 API: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Ladybugs_API  
 UI: https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Ladybugs_UI  
 
