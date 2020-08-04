@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Avatar, Tag, Divider, Steps } from 'antd';
 
-import img1 from '../public/assets/sp1.jpg';
+// import img1 from '../public/assets/sp1.jpg';
 
 const { Step } = Steps;
 
@@ -29,7 +29,7 @@ export default class RecipeDetail extends React.Component {
       id: 1,
       title: "Test1",
       author: "li",
-      img: img1,
+      // img: img1,
       created: new Date('2020/07/29').toDateString(),
       ingredients: "a",
       steps: ["111111", "222222"],
