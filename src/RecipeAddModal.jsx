@@ -42,7 +42,7 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
         <Form.Item name="author" label='Author'>
           <Input />
         </Form.Item>
-        <Form.Item label='Image' name="img">
+        <Form.Item name="img" label='Image'>
           <ImageUpload />
         </Form.Item>
         <Form.Item name="tag" label="Tag">
@@ -153,7 +153,7 @@ export default class RecipeAddModal extends React.Component {
       tag: tag,
       ingredients: ingredients,
       steps: steps,
-      // img,
+      img: img
     }
     // console.log(newRecipe);
     this.props.createRecipe(newRecipe);

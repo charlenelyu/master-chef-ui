@@ -1,6 +1,10 @@
 import React from 'react';
 import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'imgStore';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/masterchef/image/upload';
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -25,14 +29,16 @@ export default class Avatar extends React.Component {
     super();
     this.state = {
       loading: false,
+      uploadedFileCloudinaryUrl: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   handleChange(info) {
     if (info.file.status === 'uploading') {
-      this.setState({ loading: true });
+      this.setState({ 
+        loading: true,
+      });
       return;
     }
     if (info.file.status === 'done') {
@@ -43,6 +49,20 @@ export default class Avatar extends React.Component {
           loading: false,
         }),
       );
+
+      let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                    .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                    .field('file', info.file.originFileObj);
+      upload.end((err, response) => {
+        if (err) {
+            console.error(err);
+        }
+        if (response.body.secure_url !== '') {
+            this.setState({
+            uploadedFileCloudinaryUrl: response.body.secure_url
+          });
+        }
+      });
     }
   };
 
