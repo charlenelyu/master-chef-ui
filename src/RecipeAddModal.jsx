@@ -4,7 +4,49 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 import ImageUpload from './ImageUpload.jsx'
 
-function AddRecipeForm({visible, onSubmit, onCancel}) {
+function DynamicFieldSet({ name }) {
+  return (
+    <Form.List name={name}>
+      {(fields, { add, remove }) => (
+        <div>
+          {fields.map(field => (
+            <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
+              <Form.Item
+                {...field}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input step or delete this field.",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <MinusCircleOutlined
+                onClick={() => {
+                  remove(field.name);
+                }}
+              />
+            </Space>
+          ))}
+          <Form.Item>
+            <Button
+              type="dashed"
+              onClick={() => {
+                add();
+              }}
+              block
+            >
+              <PlusOutlined /> Add field
+            </Button>
+          </Form.Item>
+        </div>
+      )}
+    </Form.List>
+  )
+}
+
+function AddRecipeForm({visible, onSubmit, onCancel, getImg }) {
   const [form] = Form.useForm();
   return (
     <Modal
@@ -43,7 +85,7 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
           <Input />
         </Form.Item>
         <Form.Item name="img" label='Image'>
-          <ImageUpload />
+          <ImageUpload getURL={getImg}/>
         </Form.Item>
         <Form.Item name="tag" label="Tag">
           <Select>
@@ -52,84 +94,10 @@ function AddRecipeForm({visible, onSubmit, onCancel}) {
           </Select>
         </Form.Item>
         <Form.Item label="Ingredients">
-          <Form.List name="ingredients">
-            {(fields, { add, remove }) => (
-              <div>
-                {fields.map(field => (
-                  <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
-                    <Form.Item
-                      {...field}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input step or delete this field.",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                    <MinusCircleOutlined
-                      onClick={() => {
-                        remove(field.name);
-                      }}
-                    />
-                  </Space>
-                ))}
-
-                <Form.Item>
-                  <Button
-                    type="dashed"
-                    onClick={() => {
-                      add();
-                    }}
-                    block
-                  >
-                    <PlusOutlined /> Add field
-                  </Button>
-                </Form.Item>
-              </div>
-            )}
-            </Form.List>
+          <DynamicFieldSet name="ingredients" />
         </Form.Item>
         <Form.Item label="Steps">
-          <Form.List name="steps">
-            {(fields, { add, remove }) => (
-              <div>
-                {fields.map(field => (
-                  <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
-                    <Form.Item
-                      {...field}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input step or delete this field.",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                    <MinusCircleOutlined
-                      onClick={() => {
-                        remove(field.name);
-                      }}
-                    />
-                  </Space>
-                ))}
-
-                <Form.Item>
-                  <Button
-                    type="dashed"
-                    onClick={() => {
-                      add();
-                    }}
-                    block
-                  >
-                    <PlusOutlined /> Add field
-                  </Button>
-                </Form.Item>
-              </div>
-            )}
-          </Form.List>
+          <DynamicFieldSet name="steps" />
         </Form.Item>
       </Form>
     </Modal>
@@ -142,18 +110,27 @@ export default class RecipeAddModal extends React.Component {
     this.state = {
       visible: false,
     };
+    this.getImg = this.getImg.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onCancel = this.onCancel.bind(this);
   }
 
-  onSubmit({title, author, tag, ingredients, steps, img}) {
+  getImg(url) {
+    this.setState({
+      imgURL: url,
+    });
+    // console.log(this.state);
+  }
+
+  onSubmit({title, author, tag, ingredients, steps}) {
+    // console.log(this.state);
     const newRecipe = {
       author: author,
       title: title,
       tag: tag,
       ingredients: ingredients,
       steps: steps,
-      img: img
+      img: this.state.imgURL,
     }
     // console.log(newRecipe);
     this.props.createRecipe(newRecipe);
@@ -185,6 +162,7 @@ export default class RecipeAddModal extends React.Component {
           visible={this.state.visible}
           onSubmit={this.onSubmit}
           onCancel={this.onCancel}
+          getImg={this.getImg}
         />
       </div>  
     );
