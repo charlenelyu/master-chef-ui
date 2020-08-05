@@ -13,7 +13,7 @@ function uploadToCloud({ file, onSuccess }) {
     .end((error, response) => {
       // console.log(response);
       onSuccess(response);
-    })
+    });
 }
 
 function beforeUpload(file) {
@@ -46,7 +46,8 @@ export default class ImageUpload extends React.Component {
       // console.log(info.file.response.body)
       const { url } = info.file.response.body;
       // console.log(url);
-      this.props.getURL(url);
+      const { getURL } = this.props;
+      getURL(url);
       this.setState({
         imageUrl: url,
         loading: false,

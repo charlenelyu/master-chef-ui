@@ -9,7 +9,7 @@ export default class RecipeList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      recipes: [],
     };
     this.createRecipe = this.createRecipe.bind(this);
   }
@@ -24,8 +24,8 @@ export default class RecipeList extends React.Component {
       recipeList {
         author{name} img title
       }
-    }`
-    
+    }`;
+
     const data = await graphQLFetch(query);
     if (data) {
       this.setState({ recipes: data.recipeList });
@@ -50,8 +50,8 @@ export default class RecipeList extends React.Component {
       <React.Fragment>
         <RecipeFilter />
         <hr />
-        <RecipeTable recipes={this.state.recipes}/>
-        <RecipeAddModal createRecipe={this.createRecipe}/>
+        <RecipeTable recipes={this.state.recipes} />
+        <RecipeAddModal createRecipe={this.createRecipe} />
       </React.Fragment>
     );
   }

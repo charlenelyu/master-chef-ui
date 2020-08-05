@@ -8,33 +8,37 @@ const { Step } = Steps;
 export default class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { recipe: {
-      title: "",
-      author: "",
-      created: "",
-      ingredients: "",
-      steps: [],
-      tag: "",
-    } };
+    this.state = {
+      recipe: {
+        title: '',
+        author: '',
+        created: '',
+        ingredients: '',
+        steps: [],
+        tag: '',
+      },
+    };
   }
 
   componentDidMount() {
     this.loadData();
   }
-  
+
   loadData() {
     const { match: { params: { id } } } = this.props;
-    console.log("query recipe id " + id);
-    this.setState({ recipe : {
-      id: 1,
-      title: "Test1",
-      author: "li",
-      // img: img1,
-      created: new Date('2020/07/29').toDateString(),
-      ingredients: "a",
-      steps: ["111111", "222222"],
-      tag: "aaaaaa",
-    }})
+    console.log('query recipe id ', id);
+    this.setState({
+      recipe: {
+        id: 1,
+        title: 'Test1',
+        author: 'li',
+        // img: img1,
+        created: new Date('2020/07/29').toDateString(),
+        ingredients: 'a',
+        steps: ['111111', '222222'],
+        tag: 'aaaaaa',
+      },
+    });
     /*
     const query = `query issue($id: Int!) {
       issue (id: $id) {
@@ -52,13 +56,15 @@ export default class RecipeDetail extends React.Component {
   }
 
   render() {
-    const {title, author, img, created, ingredients, steps, tag} = this.state.recipe;
+    const {
+      title, author, img, created, ingredients, steps, tag,
+    } = this.state.recipe;
     console.log(steps);
     return (
       <div>
         <h2>{title}</h2>
         <Row gutter={16}>
-          <Col span={12}><img src={img} alt="recipe image"/></Col>
+          <Col span={12}><img src={img} alt="recipe" /></Col>
           <Col span={12}>
             <div>
               <Avatar>U</Avatar>
@@ -74,15 +80,13 @@ export default class RecipeDetail extends React.Component {
         <p>{ingredients}</p>
         <Divider orientation="left">Steps</Divider>
         <Steps direction="vertical" size="small">
-          {steps.map((step, index) => {
-            return ( 
-              <Step 
-                key={index}
-                description={step}
-              />
-            );
-          })}
-          </Steps>
+          {steps.map((step, index) => (
+            <Step 
+              key={index}
+              description={step}
+            />
+          ))}
+        </Steps>
       </div>
     );
   }

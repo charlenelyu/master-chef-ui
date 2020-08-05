@@ -23,8 +23,8 @@ export default function NavBar() {
           <Menu.Item key="2" disabled>
             <NavLink to="/profile">Profile</NavLink>
           </Menu.Item>
-         {/* <NavLink to="/about">About</NavLink> */}
-        </Menu>        
+          {/* <NavLink to="/about">About</NavLink> */}
+        </Menu>
       </Col>
 
       {/* search bar */}
@@ -32,5 +32,5 @@ export default function NavBar() {
         <Search placeholder="input search text" onSearch={value => console.log(value)} />
       </Col>
     </Row>
-  )
+  );
 }

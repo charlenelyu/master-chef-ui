@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Modal, Form, Input, Select, Space} from 'antd';
+import { Button, Modal, Form, Input, Select, Space } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
-import ImageUpload from './ImageUpload.jsx'
+import ImageUpload from './ImageUpload.jsx';
 
 function DynamicFieldSet({ name }) {
   return (
@@ -16,7 +16,7 @@ function DynamicFieldSet({ name }) {
                 rules={[
                   {
                     required: true,
-                    message: "Please input step or delete this field.",
+                    message: 'Please input step or delete this field.',
                   },
                 ]}
               >
@@ -37,16 +37,19 @@ function DynamicFieldSet({ name }) {
               }}
               block
             >
-              <PlusOutlined /> Add field
+              <PlusOutlined />
+              Add field
             </Button>
           </Form.Item>
         </div>
       )}
     </Form.List>
-  )
+  );
 }
 
-function AddRecipeForm({visible, onSubmit, onCancel, getImg }) {
+function AddRecipeForm({
+  visible, onSubmit, onCancel, getImg,
+}) {
   const [form] = Form.useForm();
   return (
     <Modal
@@ -57,13 +60,13 @@ function AddRecipeForm({visible, onSubmit, onCancel, getImg }) {
       onOk={() => {
         form
           .validateFields()
-          .then(values => {
+          .then((values) => {
             form.resetFields();
             onSubmit(values);
           })
-          .catch(info => {
-            console.log('Validate Failed:', info)
-          })
+          .catch((info) => {
+            console.log('Validate Failed:', info);
+          });
       }}
       onCancel={onCancel}
     >
@@ -81,11 +84,11 @@ function AddRecipeForm({visible, onSubmit, onCancel, getImg }) {
         <Form.Item name="title" label="Title">
           <Input />
         </Form.Item>
-        <Form.Item name="author" label='Author'>
+        <Form.Item name="author" label="Author">
           <Input />
         </Form.Item>
-        <Form.Item name="img" label='Image'>
-          <ImageUpload getURL={getImg}/>
+        <Form.Item name="img" label="Image">
+          <ImageUpload getURL={getImg} />
         </Form.Item>
         <Form.Item name="tag" label="Tag">
           <Select>
@@ -115,25 +118,21 @@ export default class RecipeAddModal extends React.Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
-  getImg(url) {
-    this.setState({
-      imgURL: url,
-    });
+  onSubmit({
+    title, author, tag, ingredients, steps, createRecipe,
+  }) {
     // console.log(this.state);
-  }
-
-  onSubmit({title, author, tag, ingredients, steps}) {
-    // console.log(this.state);
+    const { imgURL } = this.state;
     const newRecipe = {
-      author: author,
-      title: title,
-      tag: tag,
-      ingredients: ingredients,
-      steps: steps,
-      img: this.state.imgURL,
-    }
+      author,
+      title,
+      tag,
+      ingredients,
+      steps,
+      img: imgURL,
+    };
     // console.log(newRecipe);
-    this.props.createRecipe(newRecipe);
+    createRecipe(newRecipe);
     this.setState({
       visible: false,
     });
@@ -144,11 +143,19 @@ export default class RecipeAddModal extends React.Component {
     this.setState({
       visible: false,
     });
-  };
+  }
+
+  getImg(url) {
+    this.setState({
+      imgURL: url,
+    });
+    // console.log(this.state);
+  }
 
   render() {
+    const { visible } = this.state;
     return (
-      <div>  
+      <div>
         <Button
           type="primary"
           shape="circle"
@@ -159,12 +166,12 @@ export default class RecipeAddModal extends React.Component {
           }}
         />
         <AddRecipeForm
-          visible={this.state.visible}
+          visible={visible}
           onSubmit={this.onSubmit}
           onCancel={this.onCancel}
           getImg={this.getImg}
         />
-      </div>  
+      </div>
     );
   }
 }
