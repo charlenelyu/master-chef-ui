@@ -10,7 +10,7 @@ function uploadToCloud({ file, onSuccess }) {
   request.post(CLOUDINARY_UPLOAD_URL)
     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
     .field('file', file)
-    .end(response => {
+    .end((error, response) => {
       // console.log(response);
       onSuccess(response);
     })
@@ -48,6 +48,7 @@ export default class ImageUpload extends React.Component {
       // console.log(url);
       this.props.getURL(url);
       this.setState({
+        imageUrl: url,
         loading: false,
       });
     }
@@ -74,7 +75,7 @@ export default class ImageUpload extends React.Component {
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >
-        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+        {imageUrl ? <img src={imageUrl} alt="cover" style={{ width: '100%' }} /> : uploadButton}
       </Upload>
     );
   }
