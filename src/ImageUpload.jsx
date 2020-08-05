@@ -56,7 +56,7 @@ export default class ImageUpload extends React.Component {
     // if (info.file.status === 'error') {
     //   console.log('Error encountered when uploading img:', info);
     // }
-  };
+  }
 
   render() {
     const uploadButton = (
