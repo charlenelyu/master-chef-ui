@@ -10,7 +10,6 @@ export default class AboutModal extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.handleOk = this.handleOk.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-
   }
 
   showModal() {
@@ -37,10 +36,10 @@ export default class AboutModal extends React.Component {
     return (
       <>
         <Button type="link" onClick={this.showModal} ghost>
-          Open Modal
+          About
         </Button>
         <Modal
-          title="Basic Modal"
+          title="Everything about MasterChef..."
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
