@@ -7,22 +7,9 @@ import { HashRouter } from 'react-router-dom';
 import Page from './Page.jsx';
 
 const element = (
-<<<<<<< HEAD
   <HashRouter>
-    <Page/>
+    <Page />
   </HashRouter>
 );
 
-ReactDOM.render(element, document.getElementById("root"));
-
-if (module.hot) {
-  module.hot.accept();
-}
-=======
-  <BrowserRouter>
-    <Page />
-  </BrowserRouter>
-);
-
 ReactDOM.render(element, document.getElementById('root'));
->>>>>>> master
