@@ -19,7 +19,7 @@ export default function NavBar() {
 
       {/* Menu */}
       <Col span={5}>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+        <Menu theme="dark" mode="horizontal">
           <Menu.Item key="1">
             <NavLink to="/">Home</NavLink>
           </Menu.Item>
