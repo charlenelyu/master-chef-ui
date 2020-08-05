@@ -35,7 +35,7 @@ export default class AboutModal extends React.Component {
   render() {
     return (
       <>
-        <Button type="link" onClick={this.showModal} ghost>
+        <Button type="link" onClick={this.showModal} style={{ color: "white" }}>
           About
         </Button>
         <Modal

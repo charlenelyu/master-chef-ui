@@ -22,7 +22,7 @@ export default class RecipeList extends React.Component {
     // for home page, only need the author, img and title
     const query = `query {
       recipeList {
-        author{name} img title id steps ingredients tag
+        author{name} img title id
       }
     }`
     
