@@ -10,6 +10,7 @@ export default function Contents() {
   return (
     <Switch>
       <Route exact path="/" component={RecipeList} />
+      <Route path="/recipe" component={RecipeList} />
       <Route path="/profile" component={Profile} />
       <Route component={NotFound} />
     </Switch> 

@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Row, Col, Menu, Input } from 'antd';
 import './styles/antStyle.less';
+import AboutModal from "./AboutModal.jsx";
 
 const { Search } = Input;
 
@@ -19,11 +20,14 @@ export default function NavBar() {
           <Menu.Item key="1">
             <NavLink to="/">Home</NavLink>
           </Menu.Item>
-          {/* 用户未登陆之前不能看profile* */}
-          <Menu.Item key="2" disabled>
+          <Menu.Item key="2">
+            <NavLink to="/recipe">Recipes</NavLink>
+          </Menu.Item>
+          {/* 用户未登陆之前不能看profile set to disable */}
+          <Menu.Item key="3">
             <NavLink to="/profile">Profile</NavLink>
           </Menu.Item>
-         {/* <NavLink to="/about">About</NavLink> */}
+          <Menu.Item><AboutModal/></Menu.Item>
         </Menu>        
       </Col>
 
