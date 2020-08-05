@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -w uiserver.js uiserver.js",
+    "start": "nodemon -w uiserver.js -w .env uiserver.js",
+    "lint": "eslint . --ext js,jsx --ignore-pattern public",
     "compile": "webpack --mode production",
     "watch": "webpack --watch"
   },
@@ -18,12 +19,14 @@
   "dependencies": {
     "antd": "^4.5.1",
     "babel-polyfill": "^6.26.0",
+    "dotenv": "^6.2.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^4.3.1",
-    "superagent": "^5.3.1"
+    "superagent": "^5.3.1",
+    "whatwg-fetch": "^3.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -32,6 +35,11 @@
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.5",
     "file-loader": "^6.0.0",
     "less-loader": "^6.2.0",
     "style-loader": "^1.2.1",

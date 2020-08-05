@@ -6,10 +6,14 @@ import request from 'superagent';
 const CLOUDINARY_UPLOAD_PRESET = 'imgStore';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/masterchef/image/upload';
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
+function uploadToCloud({ file, onSuccess }) {
+  request.post(CLOUDINARY_UPLOAD_URL)
+    .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+    .field('file', file)
+    .end((error, response) => {
+      // console.log(response);
+      onSuccess(response);
+    });
 }
 
 function beforeUpload(file) {
@@ -24,47 +28,35 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M;
 }
 
-export default class Avatar extends React.Component {
-  constructor() {
-    super();
+export default class ImageUpload extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       loading: false,
-      uploadedFileCloudinaryUrl: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(info) {
     if (info.file.status === 'uploading') {
-      this.setState({ 
-        loading: true,
-      });
+      this.setState({ loading: true });
       return;
     }
     if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
-        this.setState({
-          imageUrl,
-          loading: false,
-        }),
-      );
-
-      let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                    .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                    .field('file', info.file.originFileObj);
-      upload.end((err, response) => {
-        if (err) {
-            console.error(err);
-        }
-        if (response.body.secure_url !== '') {
-            this.setState({
-            uploadedFileCloudinaryUrl: response.body.secure_url
-          });
-        }
+      // console.log(info.file.response.body)
+      const { url } = info.file.response.body;
+      // console.log(url);
+      const { getURL } = this.props;
+      getURL(url);
+      this.setState({
+        imageUrl: url,
+        loading: false,
       });
     }
-  };
+    // if (info.file.status === 'error') {
+    //   console.log('Error encountered when uploading img:', info);
+    // }
+  }
 
   render() {
     const uploadButton = (
@@ -80,11 +72,11 @@ export default class Avatar extends React.Component {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        customRequest={uploadToCloud}
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >
-        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+        {imageUrl ? <img src={imageUrl} alt="cover" style={{ width: '100%' }} /> : uploadButton}
       </Upload>
     );
   }

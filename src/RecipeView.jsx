@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import graphQLFetch from './graphQLFetch.js';
 import { List, Tag, Typography, Card, Divider } from 'antd';
@@ -100,3 +101,6 @@ export default class RecipeView extends React.Component {
     )
   }
 }
+=======
+// leave for Recipe View page
+>>>>>>> master
