@@ -28,6 +28,7 @@ export default class RecipeAddModal extends React.Component {
           shape="circle"
           icon={<PlusOutlined />}
           size="large"
+          style={{ position: 'fixed', bottom: '15%', right: '1%' }}
           onClick={() => {
             this.setState({ visible: true });
           }}
