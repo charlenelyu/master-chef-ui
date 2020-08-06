@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "antd": "^4.5.1",
     "babel-polyfill": "^6.26.0",
     "dotenv": "^6.2.0",

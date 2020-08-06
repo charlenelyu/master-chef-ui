@@ -39,7 +39,7 @@ export default class RecipeList extends React.Component {
       }
     }`;
 
-    const data = await graphQLFetch(query, { recipe })
+    const data = await graphQLFetch(query, { recipe });
     if (data) {
       this.loadData();
     }
@@ -47,12 +47,15 @@ export default class RecipeList extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <RecipeFilter />
-        <hr />
-        <RecipeTable recipes={this.state.recipes} />
-        <RecipeAddModal createRecipe={this.createRecipe} />
-      </React.Fragment>
+      <div className="site-layout-content">
+        <React.Fragment>
+          <RecipeFilter />
+          <hr />
+          <RecipeTable recipes={this.state.recipes} />
+          <RecipeAddModal createRecipe={this.createRecipe} />
+        </React.Fragment>
+      </div>
+
     );
   }
 }
