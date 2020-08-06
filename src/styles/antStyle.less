@@ -1,9 +1,9 @@
 @import 'antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 
 // card相关
 .card-list {
   // 因为cards是float， 无法放到container里
-  // float: left;
   margin-bottom: 13px;
   img {
     height: 156px;
@@ -21,26 +21,24 @@
   }
 }
 
-// layout相关：header/container/footer
+// container: 除了homepage都要
 .site-layout-content {
   background: #fff;
   padding: 24px;
   height: auto;
+  margin-left: 50px;
+  margin-right: 50px;
 }
-.logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0;
-  float: left;
-}
-  [data-theme="dark"] .site-layout-content {
-    background: #141414;
-  }
-  [data-theme="dark"] .logo {
-    background: rgba(255,255,255,0.3);
-  }
 
+[data-theme="dark"] .site-layout-content {
+  background: #141414;
+}
+
+.ant-layout-footer {
+  padding: 10px, 50px;
+}
+
+// search bar
 .search-bar {
   padding-top: 15px;
   width: '70%';
@@ -55,6 +53,7 @@
   font-size: 30px;
 }
 
+// recipe view page
 .detail-section {
   margin: 0 50px 20px 50px;
   padding: 22px;
@@ -98,7 +97,6 @@
   .process {
     margin-left: 10%;
     margin-right: 10%;
-    // margin-top: 10px;
     p {
       font-weight: bold;
     }
@@ -106,5 +104,29 @@
       margin-left: 10%;
       margin-right: 10%;
     }
+  }
+}
+
+// home page
+.carousel {
+  img {
+    width: 100%;
+    background-size: cover;
+  }
+  .ant-carousel .slick-slide {
+    width: 100%;
+    text-align: center;
+    line-height: 160px;
+    overflow: hidden;
+  }
+  span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 150px;
+    font-family: 'Marck Script', cursive;
+    font-size: 250px;
+    color: white;
+    text-shadow:0px 0px 10px #000;
   }
 }
