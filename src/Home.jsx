@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Carousel } from 'antd';
 
 export default class Home extends React.Component {
@@ -10,32 +10,38 @@ export default class Home extends React.Component {
   onChange(a, b, c) {
     console.log(a, b, c);
   }
-  
-  render() {
-    const contentStyle = {
-      height: '100%',
-      color: '#fff',
-      lineHeight: '160px',
-      textAlign: 'center',
-      background: '#364d79',
-    };
 
+
+  render() {
     return (
-      <Carousel autoplay>
-        <div>
-          <img src="https://lh3.googleusercontent.com/proxy/uWto6lVecIR4QMlkh0Un3zQ4jJprrHUoqt5jAApnAnHq2dfPhk_hhXb8dW-EO4NeHmSEOzjQPbTYeb5bjh4wIKHGAryc2ZHIfrE3cvdvV8tZP4_HP4Wwam3E8Smxi9rIktfHMtlevBasnUX--kp6VQ"/>
-          {/* <h3 style={contentStyle}>1</h3> */}
-        </div>
-        <div>
-          <h3 style={contentStyle}>2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>4</h3>
-        </div>
-      </Carousel>
-    )
+      <div className="carousel">
+        <Carousel autoplay>
+          <div>
+            <div className="out-container" style={{ position: 'relative' }}>
+              <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678579/home1_qcqnhq.jpg" alt="hp1"/>
+              <span>Master Chef</span>
+            </div>
+          </div>
+          <div>
+            <div className="out-container" style={{ position: 'relative' }}>
+              <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678583/home2_defwnw.jpg" alt="hp2"/>
+              <span>Master Chef</span>
+            </div>
+          </div>
+          <div>
+            <div className="out-container" style={{ position: 'relative' }}>
+              <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678580/home3_sbx61y.jpg" alt="hp3"/>
+              <span>Master Chef</span>
+            </div>
+          </div>
+          <div>
+            <div className="out-container" style={{ position: 'relative' }}>
+              <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678581/home4_rg4dtc.jpg" alt="hp4"/>
+              <span>Master Chef</span>
+            </div>
+          </div>
+        </Carousel>
+      </div>
+    );
   }
 }
