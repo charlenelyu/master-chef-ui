@@ -30,7 +30,7 @@ export default class AboutModal extends React.Component {
     this.setState({
       visible: false,
     });
-  };
+  }
 
   render() {
     return (

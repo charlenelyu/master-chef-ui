@@ -19,11 +19,12 @@ export default class RecipeView extends React.Component {
     this.loadData();
   }
 
+  // TODO: add description
   async loadData() {
     const query = `query recipeInfo($id: ID!){
       recipeInfo(id: $id) {
         id author{name} title img created
-        steps ingredients tag
+        description ingredients steps tags
       }
     }`;
 
@@ -109,7 +110,6 @@ export default class RecipeView extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
