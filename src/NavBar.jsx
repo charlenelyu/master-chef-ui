@@ -4,8 +4,8 @@ import { Row, Col, Menu, Input, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import './styles/antStyle.less';
 
-import AboutModal from "./AboutModal.jsx";
-import SignIn from "./SignIn.jsx";
+import AboutModal from './AboutModal.jsx';
+import SignIn from './SignIn.jsx';
 
 const { Search } = Input;
 
@@ -30,7 +30,7 @@ export default function NavBar() {
           <Menu.Item key="3">
             <NavLink to="/profile">Profile</NavLink>
           </Menu.Item>
-          <Menu.Item><AboutModal/></Menu.Item>
+          <Menu.Item><AboutModal /></Menu.Item>
         </Menu>
       </Col>
 
@@ -41,7 +41,7 @@ export default function NavBar() {
 
       <Col className="sign-in" span={4} offset={6}>
         <Avatar size="large" icon={<UserOutlined />} />
-        <SignIn/>
+        <SignIn />
       </Col>
     </Row>
   );

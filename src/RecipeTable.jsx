@@ -28,14 +28,14 @@ function RecipeCard({ recipe }) {
               okText="Yes"
               cancelText="No"
             >
-              <DeleteOutlined key="delete"/>
+              <DeleteOutlined key="delete" />
             </Popconfirm>,
           ]}
         >
           {/* author传过来是一个object, 只用里面的name */}
           <Meta
             title={title}
-            description={(<span>by: {author['name']}</span>)}
+            description={(<span>by: {author.name}</span>)}
           />
         </Card>
       </NavLink>

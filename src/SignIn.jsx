@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Tabs, Modal, Form, Button, Input } from 'antd';
 
 function SignForm() {
@@ -17,11 +17,11 @@ function SignForm() {
     },
   };
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     console.log('Success:', values);
   };
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
@@ -71,7 +71,7 @@ export default class SignIn extends React.Component {
   constructor() {
     super();
     this.state = {
-      visible: false
+      visible: false,
     };
     this.showModal = this.showModal.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -82,21 +82,21 @@ export default class SignIn extends React.Component {
     this.setState({
       visible: true,
     });
-  };
+  }
 
   handleOk(e) {
     console.log(e);
     this.setState({
       visible: false,
     });
-  };
+  }
 
   handleCancel(e) {
     console.log(e);
     this.setState({
       visible: false,
     });
-  };
+  }
 
   render() {
     const { TabPane } = Tabs;
@@ -113,14 +113,14 @@ export default class SignIn extends React.Component {
         >
           <Tabs defaultActiveKey="1" centered>
             <TabPane tab="Login" key="1">
-              <SignForm/>
+              <SignForm />
             </TabPane>
             <TabPane tab="Sign In" key="2">
-              <SignForm/>
+              <SignForm />
             </TabPane>
           </Tabs>
         </Modal>
       </>
     );
-  }  
+  }
 }

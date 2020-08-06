@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import { Modal, Button } from 'antd';
 
 export default class AboutModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      visible: false
+      visible: false,
     };
     this.showModal = this.showModal.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -16,14 +16,14 @@ export default class AboutModal extends React.Component {
     this.setState({
       visible: true,
     });
-  };
+  }
 
   handleOk(e) {
     console.log(e);
     this.setState({
       visible: false,
     });
-  };
+  }
 
   handleCancel(e) {
     console.log(e);
@@ -35,7 +35,7 @@ export default class AboutModal extends React.Component {
   render() {
     return (
       <>
-        <Button type="link" onClick={this.showModal} style={{ color: "white" }}>
+        <Button type="link" onClick={this.showModal} style={{ color: 'white' }}>
           About
         </Button>
         <Modal
