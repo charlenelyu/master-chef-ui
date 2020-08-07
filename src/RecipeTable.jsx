@@ -1,26 +1,29 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import { Popconfirm, Card, Col, Row } from 'antd';
-import './styles/antStyle.less';
-import { NavLink } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import './styles/antStyle.less';
 
 const { Meta } = Card;
 
-function RecipeCard({ recipe }) {
-  const { id, title, author, img } = recipe;
-  return (
-    <Col className="card-list" span={6}>
-      <NavLink to={{ pathname: `/view/${id}`, state: recipe }}>
+// eslint-disable-next-line react/prefer-stateless-function
+class RecipeCard extends React.Component {
+  render() {
+    const { recipe } = this.props;
+
+    const card = (
+      <Col className="card-list" span={6}>
         <Card
           hoverable
           style={{ width: 250, marginLeft: 16 }}
           size="small"
-          cover={<img alt={title} src={img} />}
+          cover={<img alt={recipe.title} src={recipe.img} />}
           actions={[
-            <NavLink to={{ pathname: `/edit/${id}`, state: recipe }}>
+            <Link to={{ pathname: `/edit/${recipe.id}` }}>
               <EditOutlined key="edit" />
-            </NavLink>,
+            </Link>,
             <Popconfirm
               title="Are you sure delete this task?"
               // onConfirm={confirm}
@@ -34,18 +37,26 @@ function RecipeCard({ recipe }) {
         >
           {/* author传过来是一个object, 只用里面的name */}
           <Meta
-            title={title}
-            description={(<span>by: {author.name}</span>)}
+            title={recipe.title}
+            description={(<span>by: {recipe.author.name}</span>)}
           />
         </Card>
-      </NavLink>
-    </Col>
-  );
+      </Col>
+    );
+
+    return (
+      <LinkContainer to={{ pathname: `/view/${recipe.id}` }}>
+        {card}
+      </LinkContainer>
+    );
+  }
 }
+
+const CardRouter = withRouter(RecipeCard);
 
 export default function RecipeTable({ recipes }) {
   const recipeCards = recipes.map((recipe, index) => (
-    <RecipeCard key={index} recipe={recipe} />
+    <CardRouter key={index} recipe={recipe} />
   ));
 
   return (

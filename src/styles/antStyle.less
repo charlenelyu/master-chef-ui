@@ -26,8 +26,8 @@
   background: #fff;
   padding: 24px;
   height: auto;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 70px;
+  margin-right: 70px;
 }
 
 [data-theme="dark"] .site-layout-content {
@@ -61,22 +61,24 @@
   &:hover {
     box-shadow: 0px 1px 10px 0 rgba(0, 0, 0, 0.1);
   }
+  img {
+    float: left;
+    width: 30%;
+    border-radius: 5px;
+    margin-left: 15%;
+    padding-top: 20px;
+  }
   .item {
+    float: left;
     display: flex;
+    width: 40%;
     overflow: hidden;
-    margin-left: 20%;
-    img {
-      float: left;
-      width: 260px;
-      height: 190px;
-      border-radius: 5px;
-    }
+    margin-bottom: 10px;
     .info {
-      float: left;
       box-sizing: border-box;
-      margin: 5px 25px 0 28px;
-      padding: 8px 15px 0 15px;
-      font-weight: bold;
+      // margin: 5px 25px 0 28px;
+      padding-left: 30px;
+      // font-weight: bold;
     }
   }
   .content {
@@ -92,6 +94,9 @@
     .ant-list {
       margin-left: 10%;
       margin-right: 10%;
+    }
+    .ant-card {
+      font-weight: normal;
     }
   }
   .process {

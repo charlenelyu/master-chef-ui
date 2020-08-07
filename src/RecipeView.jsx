@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  List, Tag, Typography, Card, Divider,
+  List, Tag, Typography, Card, Divider, Descriptions
 } from 'antd';
 import graphQLFetch from './graphQLFetch.js';
 import './styles/antStyle.less';
@@ -35,12 +35,12 @@ export default class RecipeView extends React.Component {
 
   render() {
     const { recipe: { id } } = this.state;
-    // const { match: { params: { id: propsId } } } = this.props;
+    const { match: { params: { id: propsId } } } = this.props;
 
     if (id == null) {
-      // if (propsId != null) {
-      //   return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
-      // }
+      if (propsId != null) {
+        return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
+      }
       return null;
     }
 
@@ -59,23 +59,32 @@ export default class RecipeView extends React.Component {
     return (
       <div className="site-layout-content">
         <div className="detail-section">
+          <img src={recipe.img} alt="img" />
           <div className="item">
-            <img src={recipe.img} alt="img" />
             <div className="info">
               <Title level={2}>{recipe.title}</Title>
-              <p>
+              <li>
                 created by:
                 {recipe.author.name}
-              </p>
-              <p>
+              </li>
+              <li>
                 created at:
                 {recipe.created}
-              </p>
+              </li>
               <p>
-                Tag:
+                Tags:
                 {' '}
-                <Tag color="magenta">{recipe.tag}</Tag>
+                {
+                  recipe.tags.map((tag, index) => (
+                    <Tag key={index} color="magenta">{tag}</Tag>
+                  ))
+                }
               </p>
+              <div className="description">
+                <Descriptions title="Description">
+                  <Descriptions.Item>{recipe.description}</Descriptions.Item>
+                </Descriptions>
+              </div>
             </div>
           </div>
           <div className="material">
@@ -86,7 +95,7 @@ export default class RecipeView extends React.Component {
               dataSource={recipe.ingredients}
               renderItem={item => (
                 <List.Item>
-                  <Card style={{ width: 100 }}>
+                  <Card size="small">
                     <p>{item}</p>
                   </Card>
                 </List.Item>

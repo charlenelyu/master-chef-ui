@@ -44,9 +44,12 @@ export default class AboutModal extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <h3>Technology stack</h3>
+          <p>React: 16.13.1</p>
+          <p>Antd : 4.5.1</p>
+          <p>Express: 4.17.1</p>
+          <p>Graphql: 0.13.2</p>
+          <p>Mongodb: 3.5.9</p>
         </Modal>
       </>
     );

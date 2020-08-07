@@ -50,7 +50,6 @@ export default class RecipeList extends React.Component {
       <div className="site-layout-content">
         <React.Fragment>
           <RecipeFilter />
-          <hr />
           <RecipeTable recipes={this.state.recipes} />
           <RecipeAddModal createRecipe={this.createRecipe} />
         </React.Fragment>
