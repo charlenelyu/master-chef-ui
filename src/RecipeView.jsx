@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  List, Tag, Typography, Card, Divider, Descriptions
+  List, Tag, Typography, Card, Divider, Descriptions,
 } from 'antd';
 import graphQLFetch from './graphQLFetch.js';
 import './styles/antStyle.less';
@@ -37,8 +37,8 @@ export default class RecipeView extends React.Component {
     const { recipe: { id } } = this.state;
     const { match: { params: { id: propsId } } } = this.props;
 
-    if (id == null) {
-      if (propsId != null) {
+    if (id === undefined) {
+      if (propsId !== undefined) {
         return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
       }
       return null;
@@ -46,15 +46,21 @@ export default class RecipeView extends React.Component {
 
     const { recipe } = this.state;
 
-    const steps = [];
-    for (let i = 1; i <= recipe.steps.length; i++) {
-      steps.push(
-        {
-          index: `Step ${i}`,
-          step: recipe.steps[i - 1],
-        },
-      );
+    let steps = [];
+    if (recipe.steps !== undefined) {
+      steps = recipe.steps.map((step, idx) => (
+        { index: `Step ${idx + 1}`, step }
+      ));
     }
+    // const steps = [];
+    // for (let i = 1; i <= recipe.steps.length; i++) {
+    //   steps.push(
+    //     {
+    //       index: `Step ${i}`,
+    //       step: recipe.steps[i - 1],
+    //     },
+    //   );
+    // }
 
     return (
       <div className="site-layout-content">
