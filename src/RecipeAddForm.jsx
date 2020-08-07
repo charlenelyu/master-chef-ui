@@ -66,7 +66,7 @@ export default class RecipeAddForm extends React.Component {
     const { imgUrl } = this.state;
     const newRecipe = Object.assign(values, { img: imgUrl });
     console.log(newRecipe);
-    // createRecipe(newRecipe);
+    createRecipe(newRecipe);
     this.formRef.current.resetFields();
     closeForm();
   }
@@ -79,7 +79,6 @@ export default class RecipeAddForm extends React.Component {
     this.setState({
       imgUrl: url,
     });
-    // console.log(this.state);
   }
 
   render() {
@@ -114,12 +113,15 @@ export default class RecipeAddForm extends React.Component {
         <Form.Item name="img" label="Image">
           <ImageUpload getURL={this.getImg} />
         </Form.Item>
-        <Form.Item name="tag" label="Tag">
+        <Form.Item name="tags" label="Tag">
           <Select mode="multiple">
             <Option value="tag1">tag1</Option>
             <Option value="tag2">tag2</Option>
             <Option value="tag3">tag3</Option>
           </Select>
+        </Form.Item>
+        <Form.Item name="description" label="Description">
+          <Input.TextArea />
         </Form.Item>
         <Form.Item label="Ingredients">
           <DynamicFieldSet name="ingredients" />
