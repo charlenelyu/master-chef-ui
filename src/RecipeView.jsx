@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  List, Tag, Typography, Card, Divider, Descriptions
+  List, Tag, Typography, Card, Divider, Descriptions, Row, Col, Steps
 } from 'antd';
 import graphQLFetch from './graphQLFetch.js';
 import './styles/antStyle.less';
 
 const { Title } = Typography;
+const { Step } = Steps;
 
 export default class RecipeView extends React.Component {
   constructor(props) {
@@ -38,55 +39,54 @@ export default class RecipeView extends React.Component {
     const { match: { params: { id: propsId } } } = this.props;
 
     if (id == null) {
-      if (propsId != null) {
-        return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
-      }
+      // if (propsId != null) {
+      //   return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
+      // }
       return null;
     }
 
     const { recipe } = this.state;
-
-    const steps = [];
-    for (let i = 1; i <= recipe.steps.length; i++) {
-      steps.push(
-        {
-          index: `Step ${i}`,
-          step: recipe.steps[i - 1],
-        },
-      );
-    }
-
+    
     return (
       <div className="site-layout-content">
         <div className="detail-section">
-          <img src={recipe.img} alt="img" />
           <div className="item">
-            <div className="info">
-              <Title level={2}>{recipe.title}</Title>
-              <li>
-                created by:
-                {recipe.author.name}
-              </li>
-              <li>
-                created at:
-                {recipe.created}
-              </li>
-              <p>
-                Tags:
-                {' '}
-                {
-                  recipe.tags.map((tag, index) => (
-                    <Tag key={index} color="magenta">{tag}</Tag>
-                  ))
-                }
-              </p>
-              <div className="description">
-                <Descriptions title="Description">
-                  <Descriptions.Item>{recipe.description}</Descriptions.Item>
-                </Descriptions>
-              </div>
-            </div>
+            <Row justify="space-around" align="middle">
+              <Col span={12}>
+                <img src={recipe.img} alt="img" />
+              </Col>
+              <Col span={12}>
+                <div className="title-layout">
+                  <Title level={2} className="title">{recipe.title}</Title>
+                </div>
+                <p>
+                  created by:
+                  {'   '}
+                  {recipe.author.name}
+                </p>
+                <p>
+                  created at:
+                  {'   '}
+                  {recipe.created}
+                </p>
+                <p>
+                  Tags:
+                  {'   '}
+                  {
+                    recipe.tags.map((tag, index) => (
+                      <Tag key={index} color="magenta">{tag}</Tag>
+                    ))
+                  }
+                </p>
+                <div className="description">
+                  <Descriptions title="Description" style={{ paddingRight: 100 }}>
+                    <Descriptions.Item>{recipe.description}</Descriptions.Item>
+                  </Descriptions>
+                </div>
+              </Col>
+            </Row>
           </div>
+
           <div className="material">
             <Divider orientation="left">Ingredients</Divider>
             <List
@@ -102,20 +102,14 @@ export default class RecipeView extends React.Component {
               )}
             />
           </div>
+
           <div className="process">
             <Divider orientation="left">Steps</Divider>
-            <List
-              bordered
-              dataSource={steps}
-              renderItem={item => (
-                <List.Item>
-                  <List.Item.Meta
-                    title={item.index}
-                    description={item.step}
-                  />
-                </List.Item>
-              )}
-            />
+            <Steps direction="vertical" className="step">
+              {recipe.steps.map(step => (
+                <Step description={step} status="process" />
+              ))}
+            </Steps>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ export default function Page() {
       <Content className="site-layout" style={{ marginTop: 60 }}>
         <Contents />
       </Content>
-      <Footer style={{ paddingTop: 5, paddingBottom: 5, textAlign: 'center', fontSize: 10 }}>
+      <Footer style={{ paddingTop: 10, paddingBottom: 8, textAlign: 'center', fontSize: 13 }}>
         Created by Tianhui Li and Yanghong Lyu
         <p className="text-center">
           Full source code available at this
