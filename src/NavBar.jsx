@@ -18,7 +18,7 @@ export default function NavBar() {
       </Col>
 
       {/* Menu */}
-      <Col span={5}>
+      <Col span={4}>
         <Menu theme="dark" mode="horizontal">
           <Menu.Item key="1">
             <NavLink to="/">Home</NavLink>

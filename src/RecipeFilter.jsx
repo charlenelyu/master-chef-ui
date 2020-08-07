@@ -40,7 +40,7 @@ export default function RecipeFilter() {
       defaultActiveKey={['0']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
       className="site-collapse-custom-collapse"
-      style={{ marginLeft: 30, marginRight: 30, marginBottom: 20 }}
+      style={{ marginLeft: 50, marginRight: 50, marginBottom: 20 }}
     >
       <Panel header="Recipe Filter by Tag" key="1" className="site-collapse-custom-panel">
         <Row gutter={[48, 8]}>

@@ -17,7 +17,7 @@ class RecipeCard extends React.Component {
       <Col className="card-list" span={6}>
         <Card
           hoverable
-          style={{ width: 250, marginLeft: 16 }}
+          style={{ width: 300, marginLeft: 60 }}
           size="small"
           cover={<img alt={recipe.title} src={recipe.img} />}
           actions={[
@@ -61,7 +61,7 @@ export default function RecipeTable({ recipes }) {
 
   return (
     <div className="site-card-wrapper">
-      <Row gutter={16}>
+      <Row gutter={24}>
         {recipeCards}
       </Row>
     </div>
