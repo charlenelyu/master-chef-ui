@@ -11,8 +11,8 @@ function DynamicFieldSet({ name }) {
     <Form.List name={name}>
       {(fields, { add, remove }) => (
         <div>
-          {fields.map(field => (
-            <Space style={{ display: 'flex', marginBottom: 8 }} align="start">
+          {fields.map((field, index) => (
+            <Space style={{ display: 'flex', marginBottom: 8 }} align="start" key={index}>
               <Form.Item
                 {...field}
                 rules={[
@@ -58,6 +58,7 @@ export default class RecipeAddForm extends React.Component {
     };
     this.getImg = this.getImg.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
     this.onReset = this.onReset.bind(this);
   }
 
@@ -65,10 +66,26 @@ export default class RecipeAddForm extends React.Component {
     const { createRecipe, closeForm } = this.props;
     const { imgUrl } = this.state;
     const newRecipe = Object.assign(values, { img: imgUrl });
-    console.log(newRecipe);
+    // console.log(newRecipe);
     createRecipe(newRecipe);
     this.formRef.current.resetFields();
     closeForm();
+  }
+
+  onUpdate(values) {
+    const { updateForm } = this.props;
+    const { imgUrl } = this.state;
+    let newRecipe;
+    if (imgUrl !== '') {
+      newRecipe = Object.assign(values, { img: imgUrl });
+    } else {
+      newRecipe = values;
+    }
+    // not able to change the author
+    // may assign the author automatically in the authorization part
+    delete newRecipe.author;
+    console.log(newRecipe);
+    updateForm(newRecipe);
   }
 
   onReset() {
@@ -82,6 +99,27 @@ export default class RecipeAddForm extends React.Component {
   }
 
   render() {
+    let newRecipe = {
+      author: '',
+      title: '',
+      description: '',
+      ingredients: [],
+      steps: [],
+      tags: [],
+    };
+    const { recipe } = this.props;
+
+    if (recipe != null) {
+      newRecipe = recipe;
+      newRecipe.author = newRecipe.author.name;
+    }
+
+    // for sample tags
+    const children = [];
+    for (let i = 10; i < 36; i++) {
+      children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+    }
+
     return (
       <Form
         ref={this.formRef}
@@ -93,7 +131,8 @@ export default class RecipeAddForm extends React.Component {
         }}
         layout="horizontal"
         name="addRecipe"
-        onFinish={this.onSubmit}
+        onFinish={recipe == null ? this.onSubmit : this.onUpdate}
+        initialValues={newRecipe}
       >
         <Form.Item
           name="title"
@@ -114,10 +153,12 @@ export default class RecipeAddForm extends React.Component {
           <ImageUpload getURL={this.getImg} />
         </Form.Item>
         <Form.Item name="tags" label="Tag">
-          <Select mode="multiple">
-            <Option value="tag1">tag1</Option>
-            <Option value="tag2">tag2</Option>
-            <Option value="tag3">tag3</Option>
+          <Select
+            mode="multiple"
+            style={{ width: '80%' }}
+            placeholder="Please select"
+          >
+            {children}
           </Select>
         </Form.Item>
         <Form.Item name="description" label="Description">

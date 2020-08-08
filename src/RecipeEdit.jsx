@@ -1,4 +1,5 @@
 import React from 'react';
+import { notification } from 'antd';
 
 import RecipeAddForm from './RecipeAddForm.jsx';
 import graphQLFetch from './graphQLFetch.js';
@@ -9,11 +10,8 @@ export default class RecipeEdit extends React.Component {
     super();
     this.state = {
       recipe: {},
-      invalidFields: {},
     };
-    // this.onChange = this.onChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.onValidityChange = this.onValidityChange.bind(this);
+    this.updateForm = this.updateForm.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +31,36 @@ export default class RecipeEdit extends React.Component {
     this.setState({ recipe: data.recipeInfo });
   }
 
+  async updateForm(newRecipe) {
+    const query = `mutation updateRecipe(
+      $id: ID!
+      $changes: UpdateRecipeInput!
+    ) {
+      updateRecipe(
+        id: $id
+        changes: $changes
+      ) {
+        title description tags img
+        ingredients steps
+      }
+    }`;
+
+    const { recipe: { id } } = this.state;
+    const { ...changes } = newRecipe;
+    const data = await graphQLFetch(query, { id, changes });
+    if (data) {
+      this.setState({ recipe: data.updateRecipe });
+      notification.open({
+        message: 'Notification',
+        description:
+          'Your recipe has been updated successfully!',
+        onClick: () => {
+          console.log('Notification Clicked!');
+        },
+      });
+    }
+  }
+
   render() {
     const { recipe: { id } } = this.state;
     const { match: { params: { id: propsId } } } = this.props;
@@ -48,8 +76,8 @@ export default class RecipeEdit extends React.Component {
 
     return (
       <div className="site-layout-content">
-        <RecipeAddForm/>
+        <RecipeAddForm recipe={recipe} updateForm={this.updateForm} />
       </div>
     );
-  };
+  }
 }
