@@ -1,10 +1,6 @@
 import React from 'react';
 import {
-<<<<<<< HEAD
-  List, Tag, Typography, Card, Divider, Descriptions,
-=======
   List, Tag, Typography, Card, Divider, Descriptions, Row, Col, Steps
->>>>>>> tianhui
 } from 'antd';
 import graphQLFetch from './graphQLFetch.js';
 import './styles/antStyle.less';
@@ -42,42 +38,15 @@ export default class RecipeView extends React.Component {
     const { recipe: { id } } = this.state;
     const { match: { params: { id: propsId } } } = this.props;
 
-<<<<<<< HEAD
-    if (id === undefined) {
-      if (propsId !== undefined) {
-        return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
-      }
-=======
     if (id == null) {
       // if (propsId != null) {
       //   return <h3>{`Recipe with ID ${propsId} not found.`}</h3>;
       // }
->>>>>>> tianhui
       return null;
     }
 
     const { recipe } = this.state;
-<<<<<<< HEAD
-
-    let steps = [];
-    if (recipe.steps !== undefined) {
-      steps = recipe.steps.map((step, idx) => (
-        { index: `Step ${idx + 1}`, step }
-      ));
-    }
-    // const steps = [];
-    // for (let i = 1; i <= recipe.steps.length; i++) {
-    //   steps.push(
-    //     {
-    //       index: `Step ${i}`,
-    //       step: recipe.steps[i - 1],
-    //     },
-    //   );
-    // }
-
-=======
     
->>>>>>> tianhui
     return (
       <div className="site-layout-content">
         <div className="detail-section">
