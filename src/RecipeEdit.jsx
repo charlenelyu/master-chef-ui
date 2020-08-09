@@ -1,9 +1,12 @@
 import React from 'react';
-import { notification } from 'antd';
+import { notification, Typography, Divider } from 'antd';
+import { Link } from 'react-router-dom';
 
 import RecipeAddForm from './RecipeAddForm.jsx';
 import graphQLFetch from './graphQLFetch.js';
 import './styles/antStyle.less';
+
+const { Title } = Typography;
 
 export default class RecipeEdit extends React.Component {
   constructor() {
@@ -17,6 +20,14 @@ export default class RecipeEdit extends React.Component {
   componentDidMount() {
     this.loadData();
   }
+
+  // componentDidUpdate(prevProps) {
+  //   const { match: { params: { id: prevId } } } = prevProps;
+  //   const { match: { params: { id } } } = this.props;
+  //   if (id !== prevId) {
+  //     this.loadData();
+  //   }
+  // }
 
   async loadData() {
     const query = `query recipeInfo($id: ID!){
@@ -73,10 +84,22 @@ export default class RecipeEdit extends React.Component {
     }
 
     const { recipe } = this.state;
+    const getId = parseInt(recipe.id);
 
     return (
       <div className="site-layout-content">
-        <RecipeAddForm recipe={recipe} updateForm={this.updateForm} />
+        <div className="edit-form">
+          <Title className="title">
+            { `Editing Recipe #${getId}` }
+          </Title>
+          <Divider />
+          <RecipeAddForm recipe={recipe} updateForm={this.updateForm} />
+          {/* <div>
+            <Link to={`/edit/${getId - 1}`}>Prev</Link>
+            {' | '}
+            <Link to={`/edit/${getId + 1}`}>Next</Link>
+          </div> */}
+        </div>
       </div>
     );
   }

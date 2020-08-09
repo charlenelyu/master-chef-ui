@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Input, Select, Space } from 'antd';
+import { Button, Form, Input, Select, Space, Row, Col } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 import ImageUpload from './ImageUpload.jsx';
@@ -11,8 +11,20 @@ function DynamicFieldSet({ name }) {
     <Form.List name={name}>
       {(fields, { add, remove }) => (
         <div>
+          <Form.Item>
+            <Button
+              type="dashed"
+              onClick={() => {
+                add();
+              }}
+              block
+            >
+              <PlusOutlined />
+              Add field
+            </Button>
+          </Form.Item>
           {fields.map((field, index) => (
-            <Space style={{ display: 'flex', marginBottom: 8 }} align="start" key={index}>
+            <Space style={{ display: 'inline-flex', marginBottom: 8, marginRight: 10 }} align="start" key={index}>
               <Form.Item
                 {...field}
                 rules={[
@@ -31,18 +43,6 @@ function DynamicFieldSet({ name }) {
               />
             </Space>
           ))}
-          <Form.Item>
-            <Button
-              type="dashed"
-              onClick={() => {
-                add();
-              }}
-              block
-            >
-              <PlusOutlined />
-              Add field
-            </Button>
-          </Form.Item>
         </div>
       )}
     </Form.List>
@@ -111,7 +111,7 @@ export default class RecipeAddForm extends React.Component {
 
     if (recipe != null) {
       newRecipe = recipe;
-      newRecipe.author = newRecipe.author.name;
+      newRecipe.author = recipe.author.name;
     }
 
     // for sample tags
@@ -167,16 +167,18 @@ export default class RecipeAddForm extends React.Component {
         <Form.Item label="Ingredients">
           <DynamicFieldSet name="ingredients" />
         </Form.Item>
-        <Form.Item label="Steps">
+        <Form.Item label="Steps" className="step-input">
           <DynamicFieldSet name="steps" />
         </Form.Item>
         <Form.Item>
-          <Button htmlType="button" onClick={this.onReset}>
-            Reset
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
+          <Col style={{ textAlign: 'center', marginLeft: '25%' }}>
+            <Button htmlType="button" onClick={this.onReset}>
+              Reset
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Col>
         </Form.Item>
       </Form>
     );
