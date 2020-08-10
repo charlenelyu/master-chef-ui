@@ -17,10 +17,22 @@ function LogInForm(props) {
     },
   };
 
-  const onFinish = (values) => {
+  async function onFinish(values) {
     console.log(values);
-    props.closeForm();
-  };
+    try {
+      const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
+      const response = await fetch(`${apiEndpoint}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...values }),
+      });
+      const body = await response.text();
+      const result = JSON.parse(body);
+      props.login(result);
+    } catch (error) {
+      console.log(`Error logging into the app: ${error}`);
+    }
+  }
 
   return (
     <Form
@@ -73,6 +85,18 @@ export default class SignIn extends React.Component {
     this.login = this.login.bind(this);
   }
 
+  async componentDidMount() {
+    const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
+    const response = await fetch(`${apiEndpoint}/user`, {
+      method: 'POST',
+      credentials: 'include',
+    });
+    const body = await response.text();
+    const result = JSON.parse(body);
+    const { signedIn, name } = result;
+    this.setState({ user: { signedIn, name } });
+  }
+
   showModal() {
     this.setState({
       visible: true,
@@ -87,7 +111,8 @@ export default class SignIn extends React.Component {
 
   login(result) {
     this.hideModal();
-    this.setState({ user: { signedIn: true, name: 'User1' } });
+    const { signedIn, name } = result;
+    this.setState({ user: { signedIn, name } });
   }
 
   render() {
@@ -110,7 +135,7 @@ export default class SignIn extends React.Component {
           onCancel={this.hideModal}
           footer={null}
         >
-          <LogInForm login={this.login} closeForm={this.hideModal} />
+          <LogInForm login={this.login} />
         </Modal>
       </>
     );
