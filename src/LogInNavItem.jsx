@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, Modal, Form, Button, Input } from 'antd';
 
-function SignForm() {
+function LogInForm(props) {
   const layout = {
     labelCol: {
       span: 8,
@@ -18,33 +18,28 @@ function SignForm() {
   };
 
   const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log(values);
+    props.closeForm();
   };
 
   return (
     <Form
       {...layout}
-      name="basic"
+      name="login"
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
-            message: 'Please input your username!',
+            message: 'Please input your email!',
           },
         ]}
       >
         <Input />
       </Form.Item>
-
       <Form.Item
         label="Password"
         name="password"
@@ -57,10 +52,9 @@ function SignForm() {
       >
         <Input.Password />
       </Form.Item>
-
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Submit
+          Log in
         </Button>
       </Form.Item>
     </Form>
@@ -68,14 +62,15 @@ function SignForm() {
 }
 
 export default class SignIn extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       visible: false,
+      user: { signedIn: false, name: '' },
     };
     this.showModal = this.showModal.bind(this);
-    this.handleOk = this.handleOk.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.login = this.login.bind(this);
   }
 
   showModal() {
@@ -84,41 +79,38 @@ export default class SignIn extends React.Component {
     });
   }
 
-  handleOk(e) {
-    console.log(e);
+  hideModal() {
     this.setState({
       visible: false,
     });
   }
 
-  handleCancel(e) {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
+  login(result) {
+    this.hideModal();
+    this.setState({ user: { signedIn: true, name: 'User1' } });
   }
 
   render() {
-    const { TabPane } = Tabs;
+    const { visible, user } = this.state;
+    if (user.signedIn) {
+      return (
+        <div>
+          {user.name}
+        </div>
+      );
+    }
     return (
       <>
         <Button type="link" onClick={this.showModal} ghost>
-          Login | Sign In
+          Login
         </Button>
         <Modal
-          title="Login | Sign In"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
+          title="Log In"
+          visible={visible}
+          onCancel={this.hideModal}
+          footer={null}
         >
-          <Tabs defaultActiveKey="1" centered>
-            <TabPane tab="Login" key="1">
-              <SignForm />
-            </TabPane>
-            <TabPane tab="Sign In" key="2">
-              <SignForm />
-            </TabPane>
-          </Tabs>
+          <LogInForm login={this.login} closeForm={this.hideModal} />
         </Modal>
       </>
     );

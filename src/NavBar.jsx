@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import './styles/antStyle.less';
 
 import AboutModal from './AboutModal.jsx';
-import SignIn from './SignIn.jsx';
+import LogIn from './LogInNavItem.jsx';
 
 const { Search } = Input;
 
@@ -41,7 +41,7 @@ export default function NavBar() {
 
       <Col className="sign-in" span={4} offset={6}>
         <Avatar size="large" icon={<UserOutlined />} />
-        <SignIn />
+        <LogIn />
       </Col>
     </Row>
   );
