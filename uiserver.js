@@ -20,7 +20,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('public/index.html'));
 });
 
-const port = process.env.UI_SERVER_ENDPOINT || 8000;
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log(`UI started on port ${port}`);

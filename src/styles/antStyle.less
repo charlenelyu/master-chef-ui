@@ -1,5 +1,8 @@
 @import 'antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@600&display=swap');
 
 // card相关
 .card-list {
@@ -14,6 +17,9 @@
       transform: scale(1.1, 1.1);
       cursor: pointer;
     }
+    .ant-card-meta-title {
+      font-family: 'Bitter', serif;
+    }
   }
   // 图片自适应container
   .ant-card-cover img{
@@ -26,8 +32,8 @@
   background: #fff;
   padding: 24px;
   height: auto;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 70px;
+  margin-right: 70px;
 }
 
 [data-theme="dark"] .site-layout-content {
@@ -62,47 +68,50 @@
     box-shadow: 0px 1px 10px 0 rgba(0, 0, 0, 0.1);
   }
   .item {
-    display: flex;
-    overflow: hidden;
-    margin-left: 20%;
+    padding: 0 100px;
     img {
-      float: left;
-      width: 260px;
-      height: 190px;
+      width: 80%;
       border-radius: 5px;
+      margin-left: 15%;
+      padding-top: 20px;
     }
-    .info {
-      float: left;
-      box-sizing: border-box;
-      margin: 5px 25px 0 28px;
-      padding: 8px 15px 0 15px;
-      font-weight: bold;
+    .title-layout {
+      padding-right: 100px;
+    }
+    .title {
+      font-family: 'Lemonada', cursive;
+    }
+    .description {
+      margin-top: 40px;
     }
   }
-  .content {
-    margin: 15px 15px 10px 15px;
-    padding: 5px;
-  }
+
   .material {
-    margin-left: 10%;
-    margin-right: 10%;
+    padding: 20px 200px;
     p {
-      font-weight: bold;
+      font-family: 'Source Sans Pro', sans-serif;;
     }
     .ant-list {
       margin-left: 10%;
       margin-right: 10%;
+    }
+    .ant-card {
+      font-weight: lighter;
     }
   }
   .process {
-    margin-left: 10%;
-    margin-right: 10%;
-    p {
-      font-weight: bold;
-    }
-    .ant-list {
+    padding: 20px 200px;
+    .step {
       margin-left: 10%;
       margin-right: 10%;
+    }
+    .ant-steps-item-icon{
+      background-color: #fff;
+      .ant-steps-icon {
+        display: block;
+        margin: 8px;
+        color: black;
+      }
     }
   }
 }
@@ -121,12 +130,36 @@
   }
   span {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 150px;
+    left: 20%;
+    top: 20%;
     font-family: 'Marck Script', cursive;
     font-size: 250px;
     color: white;
     text-shadow:0px 0px 10px #000;
   }
+}
+
+// form for create
+.step-input {
+  .ant-space {
+    width: 100%;
+    .ant-space-item {
+      width: 100%;
+    }
+  }
+}
+
+// form for edit
+.edit-form {
+  margin-left: 20%;
+  margin-right: 20%;
+  // .step-input {
+  //   .ant-space {
+  //     display: inline-flex;
+  //     .ant-space-item {
+  //       float: left;
+  //       width: 100%;
+  //     }
+  //   }
+  // }
 }

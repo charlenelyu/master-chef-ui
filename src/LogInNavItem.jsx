@@ -73,7 +73,7 @@ function LogInForm(props) {
   );
 }
 
-export default class SignIn extends React.Component {
+export default class LogInNavItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

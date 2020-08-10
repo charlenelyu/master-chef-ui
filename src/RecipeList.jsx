@@ -12,6 +12,7 @@ export default class RecipeList extends React.Component {
       recipes: [],
     };
     this.createRecipe = this.createRecipe.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
   }
 
   componentDidMount() {
@@ -45,17 +46,36 @@ export default class RecipeList extends React.Component {
     }
   }
 
+  async deleteRecipe(index) {
+    const query = `mutation deleteRecipe($id: ID!) {
+      deleteRecipe(id: $id)
+    }`;
+
+    const { recipes } = this.state;
+    const { id } = recipes[index];
+    const data = await graphQLFetch(query, { id });
+    console.log(data);
+    if (data && data.deleteRecipe) {
+      this.setState((preState) => {
+        const newList = [...preState.recipes];
+        newList.splice(index, 1);
+        return { recipes: newList };
+      });
+    } else {
+      this.loadData();
+    }
+  }
+
   render() {
+    const { recipes } = this.state;
     return (
       <div className="site-layout-content">
         <React.Fragment>
           <RecipeFilter />
-          <hr />
-          <RecipeTable recipes={this.state.recipes} />
+          <RecipeTable recipes={recipes} deleteRecipe={this.deleteRecipe} />
           <RecipeAddModal createRecipe={this.createRecipe} />
         </React.Fragment>
       </div>
-
     );
   }
 }
