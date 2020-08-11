@@ -1,5 +1,7 @@
 import React from 'react';
-import { Tabs, Modal, Form, Button, Input } from 'antd';
+import { NavLink } from 'react-router-dom';
+import { Tabs, Modal, Form, Button, Input, Avatar, Menu, Dropdown } from 'antd';
+import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
 function LogInForm(props) {
   const layout = {
@@ -23,6 +25,7 @@ function LogInForm(props) {
       const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
       const response = await fetch(`${apiEndpoint}/login`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...values }),
       });
@@ -78,23 +81,10 @@ export default class LogInNavItem extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      user: { signedIn: false, name: '' },
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.login = this.login.bind(this);
-  }
-
-  async componentDidMount() {
-    const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
-    const response = await fetch(`${apiEndpoint}/user`, {
-      method: 'POST',
-      credentials: 'include',
-    });
-    const body = await response.text();
-    const result = JSON.parse(body);
-    const { signedIn, name } = result;
-    this.setState({ user: { signedIn, name } });
   }
 
   showModal() {
@@ -112,16 +102,35 @@ export default class LogInNavItem extends React.Component {
   login(result) {
     this.hideModal();
     const { signedIn, name } = result;
-    this.setState({ user: { signedIn, name } });
+    const { onUserChange } = this.props;
+    onUserChange({ signedIn, name });
   }
 
   render() {
-    const { visible, user } = this.state;
+    const { visible } = this.state;
+    const { user } = this.props;
+    const menu = (
+      <Menu>
+        <Menu.Item key="1">
+          <NavLink to="/profile">Profile</NavLink>
+        </Menu.Item>
+        <Menu.Item key="2">
+          log out
+        </Menu.Item>
+      </Menu>
+    );
+
     if (user.signedIn) {
       return (
-        <div>
-          {user.name}
-        </div>
+        <>
+          <Avatar size="large" icon={<UserOutlined />} />
+          <Dropdown overlay={menu} trigger={['click']}>
+            <Button>
+              {user.name}
+              <DownOutlined />
+            </Button>
+          </Dropdown>
+        </>
       );
     }
     return (

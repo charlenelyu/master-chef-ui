@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Row, Col, Menu, Input, Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Row, Col, Menu, Input } from 'antd';
 import './styles/antStyle.less';
 
 import AboutModal from './AboutModal.jsx';
@@ -9,7 +8,7 @@ import LogInNavItem from './LogInNavItem.jsx';
 
 const { Search } = Input;
 
-export default function NavBar() {
+export default function NavBar({ user, onUserChange }) {
   return (
     <Row>
       {/* Brand */}
@@ -26,11 +25,9 @@ export default function NavBar() {
           <Menu.Item key="2">
             <NavLink to="/recipe">Recipes</NavLink>
           </Menu.Item>
-          {/* 用户未登陆之前不能看profile set to disable */}
           <Menu.Item key="3">
-            <NavLink to="/profile">Profile</NavLink>
+            <AboutModal />
           </Menu.Item>
-          <Menu.Item><AboutModal /></Menu.Item>
         </Menu>
       </Col>
 
@@ -40,8 +37,7 @@ export default function NavBar() {
       </Col>
 
       <Col className="sign-in" span={4} offset={6}>
-        <Avatar size="large" icon={<UserOutlined />} />
-        <LogInNavItem />
+        <LogInNavItem user={user} onUserChange={onUserChange} />
       </Col>
     </Row>
   );
