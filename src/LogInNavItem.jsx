@@ -85,6 +85,7 @@ export default class LogInNavItem extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   showModal() {
@@ -106,16 +107,34 @@ export default class LogInNavItem extends React.Component {
     onUserChange({ signedIn, name });
   }
 
+  async logout() {
+    const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
+    try {
+      await fetch(`${apiEndpoint}/signout`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+      const { onUserChange } = this.props;
+      onUserChange({ signedIn: false, name: '' });
+    } catch (error) {
+      console.log(`Error signing out: ${error}`);
+    }
+  }
+
   render() {
     const { visible } = this.state;
     const { user } = this.props;
     const menu = (
       <Menu>
         <Menu.Item key="1">
-          <NavLink to="/profile">Profile</NavLink>
+          <Button type="link" ghost>
+            <NavLink to="/profile">Profile</NavLink>
+          </Button>
         </Menu.Item>
         <Menu.Item key="2">
-          log out
+          <Button type="link" onClick={this.logout} ghost>
+            Log Out
+          </Button>
         </Menu.Item>
       </Menu>
     );
