@@ -134,6 +134,7 @@ function RegisterForm() {
   );
 }
 
+// get user email from the form
 export default class LogInNavItem extends React.Component {
   constructor(props) {
     super(props);
