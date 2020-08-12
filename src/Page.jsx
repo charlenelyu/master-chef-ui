@@ -22,8 +22,8 @@ export default class Page extends React.Component {
     });
     const body = await response.text();
     const result = JSON.parse(body);
-    const { signedIn, name } = result;
-    this.setState({ user: { signedIn, name } });
+    const { signedIn, name, email } = result;
+    this.setState({ user: { signedIn, name, email } });
   }
 
   onUserChange(user) {

@@ -14,7 +14,7 @@ export default function Contents() {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/recipe" component={RecipeList} />
-      <Route path="/profile" component={Profile} />
+      <Route path="/profile/:name/:email" component={Profile} />
       <Route path="/view/:id" component={RecipeView} />
       <Route path="/edit/:id" component={RecipeEdit} />
       <Route component={NotFound} />

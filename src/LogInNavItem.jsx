@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Tabs, Modal, Form, Button, Input, Avatar, Menu, Dropdown } from 'antd';
 import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
@@ -13,6 +13,7 @@ const layout = {
     span: 16,
   },
 };
+
 const tailLayout = {
   wrapperCol: {
     offset: 8,
@@ -183,11 +184,16 @@ export default class LogInNavItem extends React.Component {
   render() {
     const { visible } = this.state;
     const { user } = this.props;
+
+    console.log(user);
+
     const menu = (
       <Menu>
         <Menu.Item key="1">
           <Button type="link" ghost>
-            <NavLink to="/profile">Profile</NavLink>
+            <Link to={{ pathname: `/profile/${user.name}/${user.email}` }}>
+              Profile
+            </Link>
           </Button>
         </Menu.Item>
         <Menu.Item key="2">
