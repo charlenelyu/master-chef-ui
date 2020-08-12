@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col, Tabs, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import graphQLFetch from './graphQLFetch.js';
-import RecipeTable from './RecipeTable.jsx';
 import MyPost from './MyPost.jsx';
 
 const { TabPane } = Tabs;
@@ -37,7 +36,6 @@ export default class Profile extends React.Component {
     const data = await graphQLFetch(query);
 
     this.setState({ author: { name: data.me.name, email: data.me.email }, recipes: data.me.posts });
-    console.log(this.state);
   }
 
   async deleteRecipe(index) {
@@ -48,7 +46,6 @@ export default class Profile extends React.Component {
     const { recipes } = this.state;
     const { id } = recipes[index];
     const data = await graphQLFetch(query, { id });
-    console.log(data);
     if (data && data.deleteRecipe) {
       this.setState((preState) => {
         const newList = [...preState.recipes];

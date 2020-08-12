@@ -1,9 +1,6 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
-import { Popconfirm, Card, Col, Row } from 'antd';
+import { Card, Col, Row } from 'antd';
 import { withRouter, Link } from 'react-router-dom';
-// import { LinkContainer } from 'react-router-bootstrap';
-import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import './styles/antStyle.less';
 
 const { Meta } = Card;
