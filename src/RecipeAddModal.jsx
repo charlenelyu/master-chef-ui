@@ -30,11 +30,11 @@ export default class RecipeAddModal extends React.Component {
           type="primary"
           shape="circle"
           icon={<PlusOutlined style={{ fontSize: 25 }}/>}
-          style={{ width: 50, height: 50, position: 'fixed', bottom: '15%', right: '1%' }}
           onClick={() => {
             this.setState({ visible: true });
           }}
           disabled={!user.signedIn}
+          style={{ width: 50, height: 50 }}
         />
         <Modal
           visible={this.state.visible}

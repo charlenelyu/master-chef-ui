@@ -53,7 +53,9 @@ export default class RecipeList extends React.Component {
         <React.Fragment>
           <RecipeFilter />
           <RecipeTable recipes={recipes} />
-          <RecipeAddModal createRecipe={this.createRecipe} />
+          <div className="modal-list">
+            <RecipeAddModal createRecipe={this.createRecipe} />
+          </div>
         </React.Fragment>
       </div>
     );

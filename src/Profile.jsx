@@ -1,7 +1,9 @@
 import React from 'react';
-import { Row, Col, Tabs, Avatar } from 'antd';
+import { Row, Col, Tabs, Avatar, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+
 import graphQLFetch from './graphQLFetch.js';
+import RecipeAddModal from './RecipeAddModal.jsx';
 import MyPost from './MyPost.jsx';
 
 const { TabPane } = Tabs;
@@ -16,6 +18,7 @@ export default class Profile extends React.Component {
     };
     this.callback = this.callback.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.createRecipe = this.createRecipe.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +41,19 @@ export default class Profile extends React.Component {
     this.setState({ author: { name: data.me.name, email: data.me.email }, recipes: data.me.posts });
   }
 
+  async createRecipe(recipe) {
+    const query = `mutation createRecipe($recipe: RecipeInputs!){
+      createRecipe(recipe: $recipe) {
+        id
+      }
+    }`;
+
+    const data = await graphQLFetch(query, { recipe });
+    if (data) {
+      this.loadData();
+    }
+  }
+  
   async deleteRecipe(index) {
     const query = `mutation deleteRecipe($id: ID!) {
       deleteRecipe(id: $id)
@@ -70,11 +86,17 @@ export default class Profile extends React.Component {
           <div className="user-info">
             <Row justify="space-around" align="middle">
               <Col span={12}>
-                <Avatar size={64} icon={<UserOutlined />} style={{ marginLeft: 150 }} />
+                <Avatar size={64} icon={<UserOutlined />} style={{ marginLeft: 300 }} />
               </Col>
               <Col span={12}>
-                <div>{author.name}</div>
-                <div>{author.email}</div>
+                <h2>{author.name}</h2>
+                <h4>{author.email}</h4>
+                <div className="space-align-block">
+                  <Space align="center">
+                    <RecipeAddModal createRecipe={this.createRecipe} />
+                    <span>Create Your New Recipe!</span>
+                  </Space>
+                </div>
               </Col>
             </Row>
           </div>
