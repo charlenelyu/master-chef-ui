@@ -3,6 +3,8 @@ import { Button, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 import RecipeAddForm from './RecipeAddForm.jsx';
+import UserContext from './UserContext.js';
+
 
 export default class RecipeAddModal extends React.Component {
   constructor(props) {
@@ -21,6 +23,8 @@ export default class RecipeAddModal extends React.Component {
 
   render() {
     const { createRecipe } = this.props;
+    const user = this.context;
+
     return (
       <div>
         <Button
@@ -31,6 +35,7 @@ export default class RecipeAddModal extends React.Component {
           onClick={() => {
             this.setState({ visible: true });
           }}
+          disabled={!user.signedIn}
         />
         <Modal
           visible={this.state.visible}
@@ -47,3 +52,5 @@ export default class RecipeAddModal extends React.Component {
     );
   }
 }
+
+RecipeAddModal.contextType = UserContext;

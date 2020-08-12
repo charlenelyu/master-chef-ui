@@ -54,7 +54,7 @@ export default class RecipeList extends React.Component {
     const { recipes } = this.state;
     const { id } = recipes[index];
     const data = await graphQLFetch(query, { id });
-    console.log(data);
+    // console.log(data);
     if (data && data.deleteRecipe) {
       this.setState((preState) => {
         const newList = [...preState.recipes];
@@ -68,6 +68,8 @@ export default class RecipeList extends React.Component {
 
   render() {
     const { recipes } = this.state;
+    // console.log(this.context);
+
     return (
       <div className="site-layout-content">
         <React.Fragment>
