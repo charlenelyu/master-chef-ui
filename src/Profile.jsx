@@ -3,6 +3,7 @@ import { Row, Col, Tabs, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import graphQLFetch from './graphQLFetch.js';
 import RecipeTable from './RecipeTable.jsx';
+import MyPost from './MyPost.jsx';
 
 const { TabPane } = Tabs;
 
@@ -77,7 +78,7 @@ export default class Profile extends React.Component {
           <div className="user-recipe">
             <Tabs defaultActiveKey="1" onChange={this.callback}>
               <TabPane tab="My Recipes" key="1">
-                <RecipeTable recipes={recipes} deleteRecipe={this.deleteRecipe} />
+                <MyPost recipes={recipes} deleteRecipe={this.deleteRecipe} />
               </TabPane>
               <TabPane tab="My stars" key="2">
                 This is a place holder for my stars
