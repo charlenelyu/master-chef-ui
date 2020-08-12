@@ -5,7 +5,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import RecipeAddForm from './RecipeAddForm.jsx';
 import UserContext from './UserContext.js';
 
-
 export default class RecipeAddModal extends React.Component {
   constructor(props) {
     super(props);
