@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Tabs, Modal, Form, Button, Input, Avatar, Menu, Dropdown } from 'antd';
-import { UserOutlined, DownOutlined } from '@ant-design/icons';
+import { Tabs, Modal, Form, Button, Input, Space, Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 
@@ -206,15 +206,17 @@ export default class LogInNavItem extends React.Component {
 
     if (user.signedIn) {
       return (
-        <>
-          <Avatar size="large" icon={<UserOutlined />} />
-          <Dropdown overlay={menu} trigger={['click']}>
-            <Button ghost>
-              {user.name}
-              <DownOutlined />
-            </Button>
-          </Dropdown>
-        </>
+        <div className="sign-in-nav">
+          <Space align="center" size="middle">
+            <img src={user.avatar} alt="avatar" />
+            <Dropdown overlay={menu} trigger={['click']}>
+              <Button ghost>
+                {user.name}
+                <DownOutlined />
+              </Button>
+            </Dropdown>
+          </Space>
+        </div>
       );
     }
     return (
