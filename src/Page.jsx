@@ -4,6 +4,7 @@ import './styles/antStyle.less';
 
 import NavBar from './NavBar.jsx';
 import Contents from './Contents.jsx';
+import UserContext from './UserContext.js';
 
 const { Header, Content, Footer } = Layout;
 
@@ -22,8 +23,9 @@ export default class Page extends React.Component {
     });
     const body = await response.text();
     const result = JSON.parse(body);
-    const { signedIn, name } = result;
-    this.setState({ user: { signedIn, name } });
+    console.log(result);
+    const { signedIn, name, email, avatar } = result;
+    this.setState({ user: { signedIn, name, email, avatar } });
   }
 
   onUserChange(user) {
@@ -32,13 +34,16 @@ export default class Page extends React.Component {
 
   render() {
     const { user } = this.state;
+
     return (
       <Layout>
         <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
           <NavBar user={user} onUserChange={this.onUserChange} />
         </Header>
         <Content className="site-layout" style={{ marginTop: 60 }}>
-          <Contents />
+          <UserContext.Provider value={user}>
+            <Contents />
+          </UserContext.Provider>
         </Content>
         <Footer style={{ paddingTop: 10, paddingBottom: 8, textAlign: 'center', fontSize: 13 }}>
           Created by Tianhui Li and Yanghong Lyu

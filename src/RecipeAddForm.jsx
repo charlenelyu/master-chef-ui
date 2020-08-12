@@ -100,7 +100,7 @@ export default class RecipeAddForm extends React.Component {
 
   render() {
     let newRecipe = {
-      author: '',
+      // author: '',
       title: '',
       description: '',
       ingredients: [],
@@ -111,7 +111,7 @@ export default class RecipeAddForm extends React.Component {
 
     if (recipe != null) {
       newRecipe = recipe;
-      newRecipe.author = recipe.author.name;
+      // newRecipe.author = recipe.author.name;
     }
 
     // for sample tags
@@ -146,9 +146,9 @@ export default class RecipeAddForm extends React.Component {
         >
           <Input />
         </Form.Item>
-        <Form.Item name="author" label="Author">
+        {/* <Form.Item name="author" label="Author">
           <Input />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item name="img" label="Image">
           <ImageUpload getURL={this.getImg} />
         </Form.Item>

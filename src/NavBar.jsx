@@ -5,8 +5,7 @@ import './styles/antStyle.less';
 
 import AboutModal from './AboutModal.jsx';
 import LogInNavItem from './LogInNavItem.jsx';
-
-const { Search } = Input;
+import Search from './Search.jsx';
 
 export default function NavBar({ user, onUserChange }) {
   return (
@@ -33,7 +32,9 @@ export default function NavBar({ user, onUserChange }) {
 
       {/* search bar */}
       <Col className="search-bar" span={6}>
-        <Search placeholder="input search text" onSearch={value => console.log(value)} />
+        <div className="search">
+          <Search />
+        </div>
       </Col>
 
       <Col className="sign-in" span={4} offset={6}>

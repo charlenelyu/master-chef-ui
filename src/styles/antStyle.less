@@ -46,8 +46,7 @@
 
 // search bar
 .search-bar {
-  padding-top: 15px;
-  width: '70%';
+  height: 70%;
 }
 
 .sign-in {
@@ -133,7 +132,7 @@
     left: 20%;
     top: 20%;
     font-family: 'Marck Script', cursive;
-    font-size: 250px;
+    font-size: 12vw;
     color: white;
     text-shadow:0px 0px 10px #000;
   }
@@ -153,22 +152,44 @@
 .edit-form {
   margin-left: 20%;
   margin-right: 20%;
-  // .step-input {
-  //   .ant-space {
-  //     display: inline-flex;
-  //     .ant-space-item {
-  //       float: left;
-  //       width: 100%;
-  //     }
-  //   }
-  // }
 }
 
 // profile
 .user-info{
-  margin: 0 30%;
+  margin: 0 20%;
+  .avatar {
+    margin-left: 50%;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    img {
+      width: 70%;
+      margin: 10px 20px;
+      display: inline-block;
+      vertical-align: middle;
+     }
+  }
 }
 
 .user-recipe {
   margin: 0 10%;
+}
+
+// modal
+.modal-list {
+  position: fixed;
+  bottom: 10%;
+  right: 1%;
+}
+
+.space-align-block {
+  margin: 20px 10px;
+  padding: 4px;
+  flex: none;
+}
+
+.sign-in-nav {
+  img {
+    width: 40px;
+  }
 }
