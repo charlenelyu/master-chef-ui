@@ -15,7 +15,7 @@ class RecipeCard extends React.Component {
       <Col className="card-list" span={6}>
         <Card
           hoverable
-          style={{ width: 300, marginLeft: 60 }}
+          style={{ width: 250, marginBottom: 20 }}
           size="small"
           cover={<img alt={recipe.title} src={recipe.img} />}
           actions={[

@@ -191,7 +191,7 @@ export default class LogInNavItem extends React.Component {
       <Menu>
         <Menu.Item key="1">
           <Button type="link" ghost>
-            <Link to={{ pathname: `/profile/${user.name}/${user.email}` }}>
+            <Link to="/profile">
               Profile
             </Link>
           </Button>

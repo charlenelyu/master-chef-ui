@@ -12,6 +12,7 @@ export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      author: {},
       recipes: [],
     };
     this.callback = this.callback.bind(this);
@@ -24,13 +25,19 @@ export default class Profile extends React.Component {
 
   async loadData() {
     const query = `query {
-      mypost {
-        author{name} img title id
+      me {
+        name
+        email
+        posts {        
+          author{name} img title id
+        }
       }
     }`;
 
     const data = await graphQLFetch(query);
-    this.setState({ recipes: data.mypost });
+
+    this.setState({ author: { name: data.me.name, email: data.me.email }, recipes: data.me.posts });
+    console.log(this.state);
   }
 
   async deleteRecipe(index) {
@@ -58,8 +65,7 @@ export default class Profile extends React.Component {
   };
 
   render() {
-    const { recipes } = this.state;
-    const { match: { params } } = this.props;
+    const { recipes, author } = this.state;
 
     return (
       <div className="site-layout-content">
@@ -70,8 +76,8 @@ export default class Profile extends React.Component {
                 <Avatar size={64} icon={<UserOutlined />} style={{ marginLeft: 150 }} />
               </Col>
               <Col span={12}>
-                <div>{params.name}</div>
-                <div>{params.email}</div>
+                <div>{author.name}</div>
+                <div>{author.email}</div>
               </Col>
             </Row>
           </div>
