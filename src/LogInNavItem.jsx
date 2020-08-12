@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Tabs, Modal, Form, Button, Input, Avatar, Menu, Dropdown } from 'antd';
 import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
@@ -135,7 +135,6 @@ function RegisterForm() {
   );
 }
 
-// get user email from the form
 export default class LogInNavItem extends React.Component {
   constructor(props) {
     super(props);
@@ -184,16 +183,13 @@ export default class LogInNavItem extends React.Component {
   render() {
     const { visible } = this.state;
     const { user } = this.props;
-
-    console.log(user);
-
     const menu = (
       <Menu>
         <Menu.Item key="1">
           <Button type="link" ghost>
-            <Link to="/profile">
+            <NavLink to="/profile">
               Profile
-            </Link>
+            </NavLink>
           </Button>
         </Menu.Item>
         <Menu.Item key="2">
