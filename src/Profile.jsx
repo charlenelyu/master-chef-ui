@@ -5,6 +5,7 @@ import graphQLFetch from './graphQLFetch.js';
 import RecipeAddModal from './RecipeAddModal.jsx';
 import MyPost from './MyPost.jsx';
 import ImageUpload from './ImageUpload.jsx';
+import UserContext from './UserContext.js';
 
 const { TabPane } = Tabs;
 
@@ -85,8 +86,9 @@ export default class Profile extends React.Component {
     }`;
 
     const data = await graphQLFetch(query);
+    const { name, email, avatar, posts } = data.me;
 
-    this.setState({ author: { name: data.me.name, email: data.me.email, avatar: data.me.avatar }, recipes: data.me.posts });
+    this.setState({ author: { name, email, avatar }, recipes: posts });
   }
 
   async createRecipe(recipe) {
@@ -135,8 +137,11 @@ export default class Profile extends React.Component {
           console.log('Notification Clicked!');
         },
       });
-      this.loadData();
-    };
+      await this.loadData();
+      const { author } = this.state;
+      const { onUserChange } = this.context;
+      onUserChange({ signedIn: true, ...author });
+    }
   }
 
   callback(key) {
@@ -186,3 +191,5 @@ export default class Profile extends React.Component {
     );
   }
 }
+
+Profile.contextType = UserContext;

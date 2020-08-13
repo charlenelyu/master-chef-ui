@@ -22,7 +22,7 @@ export default class RecipeAddModal extends React.Component {
 
   render() {
     const { createRecipe } = this.props;
-    const user = this.context;
+    const { user } = this.context;
 
     return (
       <div>

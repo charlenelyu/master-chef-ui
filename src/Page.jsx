@@ -11,8 +11,12 @@ const { Header, Content, Footer } = Layout;
 export default class Page extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: { signedIn: false } };
-    this.onUserChange = this.onUserChange.bind(this);
+    this.onUserChange = (change) => { this.setState({ user: { ...change } }); };
+    this.state = {
+      user: { signedIn: false },
+      onUserChange: this.onUserChange,
+    };
+    // this.onUserChange = this.onUserChange.bind(this);
   }
 
   async componentDidMount() {
@@ -28,20 +32,20 @@ export default class Page extends React.Component {
     this.setState({ user: { signedIn, name, email, avatar } });
   }
 
-  onUserChange(user) {
-    this.setState({ user });
-  }
+  // onUserChange(user) {
+  //   this.setState({ user });
+  // }
 
   render() {
-    const { user } = this.state;
+    const { user, onUserChange } = this.state;
 
     return (
       <Layout>
         <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-          <NavBar user={user} onUserChange={this.onUserChange} />
+          <NavBar user={user} onUserChange={onUserChange} />
         </Header>
         <Content className="site-layout" style={{ marginTop: 60 }}>
-          <UserContext.Provider value={user}>
+          <UserContext.Provider value={this.state}>
             <Contents />
           </UserContext.Provider>
         </Content>

@@ -161,9 +161,9 @@ export default class LogInNavItem extends React.Component {
 
   login(result) {
     this.hideModal();
-    const { signedIn, name, email } = result;
+    const { signedIn, name, email, avatar } = result;
     const { onUserChange } = this.props;
-    onUserChange({ signedIn, name, email });
+    onUserChange({ signedIn, name, email, avatar });
   }
 
   async logout() {
@@ -174,7 +174,7 @@ export default class LogInNavItem extends React.Component {
         credentials: 'include',
       });
       const { onUserChange } = this.props;
-      onUserChange({ signedIn: false, name: '', email: '' });
+      onUserChange({ signedIn: false, name: '', email: '', avatar: '' });
     } catch (error) {
       console.log(`Error signing out: ${error}`);
     }
