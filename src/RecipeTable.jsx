@@ -22,7 +22,13 @@ class RecipeCard extends React.Component {
             {/* author传过来是一个object, 只用里面的name */}
             <Meta
               title={recipe.title}
-              description={(<span>by: {recipe.author.name}</span>)}
+              description={(
+                <span>
+                  by:
+                  {' '}
+                  {recipe.author.name}
+                </span>
+              )}
             />
           </Card>
         </Link>

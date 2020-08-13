@@ -1,5 +1,7 @@
 import React from 'react';
-import { Row, Col, Tabs, Button, Space, Modal, message } from 'antd';
+import {
+  Row, Col, Tabs, Button, Space, Modal, message,
+} from 'antd';
 
 import graphQLFetch from './graphQLFetch.js';
 import RecipeAddModal from './RecipeAddModal.jsx';
@@ -86,7 +88,9 @@ export default class Profile extends React.Component {
     }`;
 
     const data = await graphQLFetch(query);
-    const { name, email, avatar, posts } = data.me;
+    const {
+      name, email, avatar, posts,
+    } = data.me;
 
     this.setState({ author: { name, email, avatar }, recipes: posts });
   }

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Popconfirm, Card, Col, Row } from 'antd';
+import {
+  Popconfirm, Card, Col, Row,
+} from 'antd';
 import { withRouter, Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import './styles/antStyle.less';
@@ -39,7 +41,13 @@ class RecipeCard extends React.Component {
           {/* author传过来是一个object, 只用里面的name */}
           <Meta
             title={recipe.title}
-            description={(<span>by: {recipe.author.name}</span>)}
+            description={(
+              <span>
+                by:
+                {' '}
+                {recipe.author.name}
+              </span>
+            )}
           />
         </Card>
       </Col>

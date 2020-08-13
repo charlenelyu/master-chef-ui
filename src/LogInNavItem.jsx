@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Tabs, Modal, Form, Button, Input, Space, Menu, Dropdown, message } from 'antd';
+import {
+  Tabs, Modal, Form, Button, Input, Space, Menu, Dropdown, message,
+} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 import graphQLFetch from './graphQLFetch.js';
@@ -187,7 +189,9 @@ export default class LogInNavItem extends React.Component {
     const { name, email, avatar } = data.me;
 
     const { onUserChange } = this.props;
-    onUserChange({ signedIn: true, name, email, avatar });
+    onUserChange({
+      signedIn: true, name, email, avatar,
+    });
   }
 
   async logout() {
@@ -198,7 +202,9 @@ export default class LogInNavItem extends React.Component {
         credentials: 'include',
       });
       const { onUserChange } = this.props;
-      onUserChange({ signedIn: false, name: '', email: '', avatar: '' });
+      onUserChange({
+        signedIn: false, name: '', email: '', avatar: '',
+      });
     } catch (error) {
       message.error(`Error logging out: ${error}`);
     }

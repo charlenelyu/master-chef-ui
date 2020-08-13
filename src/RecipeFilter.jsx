@@ -1,7 +1,9 @@
 import React from 'react';
 import URLSearchParams from 'url-search-params';
 import { withRouter } from 'react-router-dom';
-import { Collapse, Select, Row, Col, Button } from 'antd';
+import {
+  Collapse, Select, Row, Col, Button,
+} from 'antd';
 
 import { CaretRightOutlined } from '@ant-design/icons';
 import './styles/antStyle.less';

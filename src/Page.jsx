@@ -43,7 +43,11 @@ export default class Page extends React.Component {
     const data = await graphQLFetch(query);
     const { name, email, avatar } = data.me;
 
-    this.setState({ user: { signedIn: true, name, email, avatar } });
+    this.setState({
+      user: {
+        signedIn: true, name, email, avatar,
+      },
+    });
   }
 
   render() {
@@ -59,7 +63,10 @@ export default class Page extends React.Component {
             <Contents />
           </UserContext.Provider>
         </Content>
-        <Footer style={{ paddingTop: 10, paddingBottom: 8, textAlign: 'center', fontSize: 13 }}>
+        <Footer style={{
+          paddingTop: 10, paddingBottom: 8, textAlign: 'center', fontSize: 13,
+        }}
+        >
           Created by Tianhui Li and Yanghong Lyu
           <p className="text-center">
             Full source code available at this
