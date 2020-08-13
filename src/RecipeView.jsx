@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  List, Tag, Typography, Card, Divider, Descriptions, Row, Col, Steps
+  List, Tag, Typography, Card, Divider, Descriptions, Row, Col, Steps,
 } from 'antd';
 import graphQLFetch from './graphQLFetch.js';
 import './styles/antStyle.less';
@@ -36,7 +36,7 @@ export default class RecipeView extends React.Component {
 
   render() {
     const { recipe: { id } } = this.state;
-    const { match: { params: { id: propsId } } } = this.props;
+    // const { match: { params: { id: propsId } } } = this.props;
 
     if (id == null) {
       // if (propsId != null) {
@@ -46,7 +46,7 @@ export default class RecipeView extends React.Component {
     }
 
     const { recipe } = this.state;
-    
+
     return (
       <div className="site-layout-content">
         <div className="detail-section">

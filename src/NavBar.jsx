@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Row, Col, Menu, Input } from 'antd';
+import { Row, Col, Menu } from 'antd';
 import './styles/antStyle.less';
 
 import AboutModal from './AboutModal.jsx';

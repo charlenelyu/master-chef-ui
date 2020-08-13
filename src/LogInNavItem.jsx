@@ -188,7 +188,7 @@ export default class LogInNavItem extends React.Component {
       const { onUserChange } = this.props;
       onUserChange({ signedIn: false, name: '', email: '', avatar: '' });
     } catch (error) {
-      console.log(`Error logging out: ${error}`);
+      message.error(`Error logging out: ${error}`);
     }
   }
 

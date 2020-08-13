@@ -23,13 +23,13 @@ export default class RecipeAddModal extends React.Component {
   render() {
     const { createRecipe } = this.props;
     const { user } = this.context;
-
+    const { visible } = this.state;
     return (
       <div>
         <Button
           type="primary"
           shape="circle"
-          icon={<PlusOutlined style={{ fontSize: 25 }}/>}
+          icon={<PlusOutlined style={{ fontSize: 25 }} />}
           onClick={() => {
             this.setState({ visible: true });
           }}
@@ -37,7 +37,7 @@ export default class RecipeAddModal extends React.Component {
           style={{ width: 50, height: 50 }}
         />
         <Modal
-          visible={this.state.visible}
+          visible={visible}
           title="Add a New Recipe"
           footer={null}
           onCancel={this.onCancel}

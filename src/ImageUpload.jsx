@@ -59,9 +59,10 @@ export default class ImageUpload extends React.Component {
   }
 
   render() {
+    const { loading } = this.state;
     const uploadButton = (
       <div>
-        {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
+        {loading ? <LoadingOutlined /> : <PlusOutlined />}
         <div className="ant-upload-text">Upload</div>
       </div>
     );

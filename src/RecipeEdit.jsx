@@ -1,6 +1,5 @@
 import React from 'react';
-import { notification, Typography, Divider } from 'antd';
-import { Link } from 'react-router-dom';
+import { message, Typography, Divider } from 'antd';
 
 import RecipeAddForm from './RecipeAddForm.jsx';
 import graphQLFetch from './graphQLFetch.js';
@@ -61,20 +60,13 @@ export default class RecipeEdit extends React.Component {
     const data = await graphQLFetch(query, { id, changes });
     if (data) {
       this.setState({ recipe: data.updateRecipe });
-      notification.open({
-        message: 'Notification',
-        description:
-          'Your recipe has been updated successfully!',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      message.success('Your recipe has been updated successfully!');
     }
   }
 
   render() {
     const { recipe: { id } } = this.state;
-    const { match: { params: { id: propsId } } } = this.props;
+    // const { match: { params: { id: propsId } } } = this.props;
 
     if (id == null) {
       // if (propsId != null) {

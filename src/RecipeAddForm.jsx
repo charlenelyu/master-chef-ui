@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Input, Select, Space, Row, Col } from 'antd';
+import { Button, Form, Input, Select, Space, Col } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 import ImageUpload from './ImageUpload.jsx';

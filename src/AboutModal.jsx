@@ -18,21 +18,20 @@ export default class AboutModal extends React.Component {
     });
   }
 
-  handleOk(e) {
-    console.log(e);
+  handleOk() {
     this.setState({
       visible: false,
     });
   }
 
-  handleCancel(e) {
-    console.log(e);
+  handleCancel() {
     this.setState({
       visible: false,
     });
   }
 
   render() {
+    const { visible } = this.state;
     return (
       <>
         <Button type="link" onClick={this.showModal} style={{ color: 'white' }}>
@@ -40,7 +39,7 @@ export default class AboutModal extends React.Component {
         </Button>
         <Modal
           title="Everything about MasterChef..."
-          visible={this.state.visible}
+          visible={visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
