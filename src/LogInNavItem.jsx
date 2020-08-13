@@ -39,7 +39,7 @@ function LogInForm(props) {
       if (result.signedIn) props.login();
       else message.error(result.message);
     } catch (error) {
-      console.log(`Error logging into the app: ${error}`);
+      message.error(`Error logging into the app: ${error}`);
     }
   }
 

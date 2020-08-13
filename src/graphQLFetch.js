@@ -1,3 +1,5 @@
+import { message } from 'antd';
+
 export default async function graphQLFetch(query, variables = {}) {
   try {
     const response = await fetch(window.ENV.UI_API_ENDPOINT, {
@@ -12,14 +14,14 @@ export default async function graphQLFetch(query, variables = {}) {
     if (result.errors) {
       const error = result.errors[0];
       if (error.extensions.code === 'BAD_USER_INPUT') {
-        alert(`${error.message}`);
+        message.error(`${error.message}`);
       } else {
-        alert(`${error.extensions.code}: ${error.message}`);
+        message.error(`${error.extensions.code}: ${error.message}`);
       }
     }
     return result.data;
   } catch (e) {
-    alert(`Error in sending data to server: ${e.message}`);
+    message.error(`Error in sending data to server: ${e.message}`);
     return null;
   }
 }
