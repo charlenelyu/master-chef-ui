@@ -5,7 +5,6 @@ import './styles/antStyle.less';
 import NavBar from './NavBar.jsx';
 import Contents from './Contents.jsx';
 import UserContext from './UserContext.js';
-
 import graphQLFetch from './graphQLFetch.js';
 
 const { Header, Content, Footer } = Layout;
@@ -28,11 +27,11 @@ export default class Page extends React.Component {
     });
     const body = await response.text();
     const result = JSON.parse(body);
-    console.log(result);
-    this.getAvatar();
+    const { signedIn } = result;
+    if (signedIn) this.getUser();
   }
 
-  async getAvatar() {
+  async getUser() {
     const query = `query {
       me {
         name

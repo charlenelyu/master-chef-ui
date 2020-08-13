@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Tabs, Button, Space, Modal, notification } from 'antd';
+import { Row, Col, Tabs, Button, Space, Modal, message } from 'antd';
 
 import graphQLFetch from './graphQLFetch.js';
 import RecipeAddModal from './RecipeAddModal.jsx';
@@ -129,14 +129,7 @@ export default class Profile extends React.Component {
     }`;
     const data = await graphQLFetch(query, { img: url });
     if (data && data.updateAvatar) {
-      notification.open({
-        message: 'Notification',
-        description:
-          'Your avatar has been updated successfully!',
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
+      message.success('Avatar updated successfully!');
       await this.loadData();
       const { author } = this.state;
       const { onUserChange } = this.context;
