@@ -15,7 +15,7 @@ class RecipeCard extends React.Component {
         <Link to={{ pathname: `/view/${recipe.id}` }}>
           <Card
             hoverable
-            style={{ width: 300, marginLeft: 60 }}
+            style={{ width: '80%', marginLeft: 30 }}
             size="small"
             cover={<img alt={recipe.title} src={recipe.img} />}
           >
