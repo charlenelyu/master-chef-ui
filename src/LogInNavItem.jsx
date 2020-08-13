@@ -83,13 +83,25 @@ function LogInForm(props) {
 }
 
 function RegisterForm() {
-  function onFinish(values) {
-    console.log(values);
+  const [form] = Form.useForm();
+
+  async function onFinish(values) {
+    const query = `mutation createUser($user: UserInputs!){
+      createUser(user: $user) {
+        name
+      }
+    }`;
+    const data = await graphQLFetch(query, { user: values });
+    if (data) {
+      message.success('Successfully created a new account!');
+      form.resetFields();
+    }
   }
 
   return (
     <Form
       {...layout}
+      form={form}
       name="register"
       onFinish={onFinish}
     >

@@ -4,7 +4,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 import ImageUpload from './ImageUpload.jsx';
 
-const { Option } = Select;
+const { Option, OptGroup } = Select;
 
 function DynamicFieldSet({ name }) {
   return (
@@ -115,10 +115,9 @@ export default class RecipeAddForm extends React.Component {
     }
 
     // for sample tags
-    const children = [];
-    for (let i = 10; i < 36; i++) {
-      children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-    }
+    const cuisine = ['american', 'asian', 'indian', 'italian', 'mexican', 'thai', 'vietnamese'];
+    const meal = ['breakfast', 'brunch', 'lunch', 'dinner', 'dessert'];
+    const category = ['meat', 'poultry', 'seafood', 'grains', 'pizza', 'burger', 'sandwiches', 'vegetables', 'sweets'];
 
     return (
       <Form
@@ -158,7 +157,15 @@ export default class RecipeAddForm extends React.Component {
             style={{ width: '80%' }}
             placeholder="Please select"
           >
-            {children}
+            <OptGroup label="cuisine">
+              {cuisine.map(item => <Option value={item}>{item}</Option>)}
+            </OptGroup>
+            <OptGroup label="meal">
+              {meal.map(item => <Option value={item}>{item}</Option>)}
+            </OptGroup>
+            <OptGroup label="category">
+              {category.map(item => <Option value={item}>{item}</Option>)}
+            </OptGroup>
           </Select>
         </Form.Item>
         <Form.Item name="description" label="Description">
