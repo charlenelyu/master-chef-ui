@@ -6,6 +6,8 @@ import NavBar from './NavBar.jsx';
 import Contents from './Contents.jsx';
 import UserContext from './UserContext.js';
 
+import graphQLFetch from './graphQLFetch.js';
+
 const { Header, Content, Footer } = Layout;
 
 export default class Page extends React.Component {
@@ -16,7 +18,6 @@ export default class Page extends React.Component {
       user: { signedIn: false },
       onUserChange: this.onUserChange,
     };
-    // this.onUserChange = this.onUserChange.bind(this);
   }
 
   async componentDidMount() {
@@ -28,13 +29,23 @@ export default class Page extends React.Component {
     const body = await response.text();
     const result = JSON.parse(body);
     console.log(result);
-    const { signedIn, name, email, avatar } = result;
-    this.setState({ user: { signedIn, name, email, avatar } });
+    this.getAvatar();
   }
 
-  // onUserChange(user) {
-  //   this.setState({ user });
-  // }
+  async getAvatar() {
+    const query = `query {
+      me {
+        name
+        email
+        avatar
+      }
+    }`;
+
+    const data = await graphQLFetch(query);
+    const { name, email, avatar } = data.me;
+
+    this.setState({ user: { signedIn: true, name, email, avatar } });
+  }
 
   render() {
     const { user, onUserChange } = this.state;
