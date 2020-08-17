@@ -248,7 +248,7 @@ export default class LogInNavItem extends React.Component {
     return (
       <>
         <Button type="link" onClick={this.showModal} ghost>
-          Login
+          Log in | Register
         </Button>
         <Modal
           title="Login/Register"

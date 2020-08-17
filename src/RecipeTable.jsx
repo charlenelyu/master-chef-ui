@@ -11,11 +11,10 @@ class RecipeCard extends React.Component {
     const { recipe } = this.props;
 
     return (
-      <Col className="card-list" span={6}>
+      <Col className="card-list" sm={12} md={8} lg={6}>
         <Link to={{ pathname: `/view/${recipe.id}` }}>
           <Card
             hoverable
-            style={{ width: '80%', marginLeft: 30 }}
             size="small"
             cover={<img alt={recipe.title} src={recipe.img} />}
           >
@@ -46,7 +45,7 @@ export default function RecipeTable({ recipes }) {
 
   return (
     <div className="site-card-wrapper">
-      <Row gutter={24}>
+      <Row>
         {recipeCards}
       </Row>
     </div>

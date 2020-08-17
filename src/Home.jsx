@@ -6,19 +6,13 @@ export default function Home() {
     <div className="carousel" style={{ position: 'relative' }}>
       <Carousel autoplay>
         <div>
-          <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678579/home1_qcqnhq.jpg" alt="hp1" />
+          <img src="https://res.cloudinary.com/masterchef/image/upload/v1597638908/hero_1_u23rqp.jpg" alt="hp1" />
         </div>
         <div>
-          <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678583/home2_defwnw.jpg" alt="hp2" />
-        </div>
-        <div>
-          <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678580/home3_sbx61y.jpg" alt="hp3" />
-        </div>
-        <div>
-          <img src="https://res.cloudinary.com/masterchef/image/upload/v1596678581/home4_rg4dtc.jpg" alt="hp4" />
+          <img src="https://res.cloudinary.com/masterchef/image/upload/v1597638908/hero_2_m4mgnw.jpg" alt="hp2" />
         </div>
       </Carousel>
-      <span>Master Chef</span>
+      <span>Share Your Recipes At Master Chef</span>
     </div>
   );
 }

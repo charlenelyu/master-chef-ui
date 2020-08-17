@@ -55,26 +55,16 @@ export default class Page extends React.Component {
 
     return (
       <Layout>
-        <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+        <Header>
           <NavBar user={user} onUserChange={onUserChange} />
         </Header>
-        <Content className="site-layout" style={{ marginTop: 60 }}>
+        <Content>
           <UserContext.Provider value={this.state}>
             <Contents />
           </UserContext.Provider>
         </Content>
-        <Footer style={{
-          paddingTop: 10, paddingBottom: 8, textAlign: 'center', fontSize: 13,
-        }}
-        >
-          Created by Tianhui Li and Yanghong Lyu
-          <p className="text-center">
-            Full source code available at this
-            {' '}
-            <a href="https://github.ccs.neu.edu/NEU-CS5610-SU20/GroupProject_Ladybugs_UI">
-              GitHub repository
-            </a>
-          </p>
+        <Footer>
+          Copyright &copy;2020 Created by Tianhui Li and Yanghong Lyu
         </Footer>
       </Layout>
     );

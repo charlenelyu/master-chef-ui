@@ -51,14 +51,14 @@ export default class RecipeView extends React.Component {
       <div className="site-layout-content">
         <div className="detail-section">
           <div className="item">
+            <div className="title-layout">
+              <Title level={2} className="title">{recipe.title}</Title>
+            </div>
             <Row justify="space-around" align="middle">
-              <Col span={12}>
+              <Col lg={12}>
                 <img src={recipe.img} alt="img" />
               </Col>
-              <Col span={12}>
-                <div className="title-layout">
-                  <Title level={2} className="title">{recipe.title}</Title>
-                </div>
+              <Col lg={12}>
                 <p>
                   created by:
                   {'   '}
@@ -79,7 +79,7 @@ export default class RecipeView extends React.Component {
                   }
                 </p>
                 <div className="description">
-                  <Descriptions title="Description" style={{ paddingRight: 100 }}>
+                  <Descriptions title="Description">
                     <Descriptions.Item>{recipe.description}</Descriptions.Item>
                   </Descriptions>
                 </div>
@@ -106,8 +106,8 @@ export default class RecipeView extends React.Component {
           <div className="process">
             <Divider orientation="left">Steps</Divider>
             <Steps direction="vertical" className="step">
-              {recipe.steps.map(step => (
-                <Step description={step} status="process" />
+              {recipe.steps.map((step, index) => (
+                <Step description={step} key={index} status="process" />
               ))}
             </Steps>
           </div>

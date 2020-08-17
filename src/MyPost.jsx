@@ -14,10 +14,9 @@ class RecipeCard extends React.Component {
     const { recipe, deleteRecipe, index } = this.props;
 
     return (
-      <Col className="card-list" span={6}>
+      <Col className="card-list" md={12} lg={8} xl={6}>
         <Card
           hoverable
-          style={{ width: 250, marginBottom: 20 }}
           size="small"
           cover={<img alt={recipe.title} src={recipe.img} />}
           actions={[
@@ -64,7 +63,7 @@ export default function RecipeTable({ recipes, deleteRecipe }) {
 
   return (
     <div className="site-card-wrapper">
-      <Row gutter={24}>
+      <Row>
         {recipeCards}
       </Row>
     </div>
