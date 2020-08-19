@@ -154,22 +154,23 @@ body {
 
 // home page
 .carousel {
+  position: 'relative';
   img {
     width: 100%;
     background-size: cover;
   }
-  .ant-carousel .slick-slide {
-    width: 100%;
-    text-align: center;
-    line-height: 160px;
-    overflow: hidden;
-  }
-  span {
+  // .ant-carousel .slick-slide {
+  //   width: 100%;
+  //   text-align: center;
+  //   line-height: 160px;
+  //   overflow: hidden;
+  // }
+  p {
     text-align: center;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    top: 20vw;
+    left: 25%;
+    width: 50%;
     font-size: 5vw;
     font-weight: 800;
     color: white;
@@ -217,7 +218,7 @@ body {
 // modal
 .modal-list {
   position: fixed;
-  bottom: 10%;
+  top: 50vw;
   right: 1%;
 }
 
