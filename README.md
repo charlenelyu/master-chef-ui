@@ -2,7 +2,7 @@
 
 This is the repository for the UI of Master Chef.
 
-[Click here for demo!](https://master-chef-ui.herokuapp.com/)
+[**Click here for demo!**](https://master-chef-ui.herokuapp.com/)
 
 [Link to API repo](https://github.com/charlenelyu/master-chef-api)
 
